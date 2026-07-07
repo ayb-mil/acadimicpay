@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import { getSiteContent } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n";
+import { Analytics } from "@vercel/analytics/next";
 
 // Corps & interface : sans humaniste, très lisible.
 const inter = Inter({
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer siteName={site.siteName} dictionary={dictionary} />
         <WhatsAppFloatingButton phoneNumber={site.contact.whatsappNumber} />
+        <Analytics />
       </body>
     </html>
   );
