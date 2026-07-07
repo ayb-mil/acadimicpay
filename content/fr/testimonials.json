@@ -1,0 +1,23 @@
+[
+  {
+    "id": "temoin-1",
+    "name": "S. Bennani",
+    "role": "Doctorante en sciences des matériaux",
+    "affiliation": "Faculté des Sciences, Meknès",
+    "quote": "Mes frais de publication ont été réglés en moins de deux jours, avec la facture et la référence de transaction transmises immédiatement. Exactement ce qu'il me fallait pour mon dossier de remboursement."
+  },
+  {
+    "id": "temoin-2",
+    "name": "K. Idrissi",
+    "role": "Enseignant-chercheur en génie électrique",
+    "affiliation": "ENS Meknès",
+    "quote": "J'hésitais à payer les frais d'une revue que je ne connaissais pas. La vérification préalable m'a évité une mauvaise surprise et m'a orienté vers une revue plus sérieuse."
+  },
+  {
+    "id": "temoin-3",
+    "name": "H. Amrani",
+    "role": "Doctorant en informatique",
+    "affiliation": "Université Moulay Ismaïl",
+    "quote": "Simple, direct, et surtout transparent sur la commission dès le départ. Aucune surprise sur le montant final."
+  }
+]

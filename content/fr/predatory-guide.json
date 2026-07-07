@@ -1,0 +1,28 @@
+{
+  "title": "5 signaux d'alerte d'une revue scientifique prédatrice",
+  "intro": "Les revues prédatrices facturent des frais de publication sans assurer une véritable évaluation scientifique. Voici cinq signaux qui doivent vous amener à vérifier avant de payer. Aucun ne prouve à lui seul qu'une revue est frauduleuse, mais leur cumul est un motif sérieux de prudence.",
+  "signals": [
+    {
+      "title": "Paiement exigé uniquement en cryptomonnaie",
+      "description": "Les frais sont demandés vers un portefeuille personnel en cryptomonnaie, sans aucun autre moyen de paiement proposé (carte, virement bancaire, plateforme reconnue)."
+    },
+    {
+      "title": "Frais demandés avant ou pendant la relecture",
+      "description": "Une revue sérieuse facture les frais de publication après l'acceptation du manuscrit, pas avant que l'évaluation scientifique ait réellement commencé."
+    },
+    {
+      "title": "Adresse email générique",
+      "description": "La correspondance provient d'une adresse Gmail, Yahoo ou équivalente, au lieu d'un domaine institutionnel officiel rattaché à la revue ou à son éditeur."
+    },
+    {
+      "title": "Pression temporelle artificielle",
+      "description": "Un délai court et menaçant (« paiement sous 7 jours sinon annulation ») est imposé pour vous empêcher de prendre le temps de vérifier."
+    },
+    {
+      "title": "Absence des bases d'indexation reconnues",
+      "description": "La revue est introuvable dans Scopus, Web of Science ou le DOAJ, alors que son site affirme le contraire ou met en avant des indicateurs invérifiables."
+    }
+  ],
+  "ctaTitle": "Un doute sur une revue ou un email reçu ?",
+  "ctaText": "Envoyez-le nous : nous vérifions gratuitement, avant que vous ne payiez quoi que ce soit."
+}

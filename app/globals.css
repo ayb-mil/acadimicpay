@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Décalage pour le header collant lors des ancres */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    color: #16202e; /* encre */
+    background-color: #faf8f3; /* papier */
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Titres en serif académique, avec un léger resserrement optique. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-fraunces), Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Sélection de texte teintée ocre (le cachet de la maison). */
+  ::selection {
+    background-color: #f2e2d1; /* ocre-100 */
+    color: #16202e;
+  }
+
+  /* Focus visible cohérent et accessible partout. */
+  :focus-visible {
+    outline: 2px solid #275074; /* bleu-600 */
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /*
+   * Scroll-reveal léger et réutilisable.
+   * L'élément est masqué au départ (.reveal) puis révélé quand il entre
+   * dans le viewport (.reveal.is-visible) via IntersectionObserver.
+   * Volontairement subtil : petite translation + fondu.
+   */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+ * Accessibilité : respect strict de prefers-reduced-motion.
+ * Toute animation/transition est neutralisée, le contenu reste
+ * immédiatement visible (jamais masqué par une animation non jouée).
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

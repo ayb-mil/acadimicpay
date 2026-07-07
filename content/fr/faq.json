@@ -1,0 +1,47 @@
+[
+  {
+    "id": "legalite",
+    "question": "Ce service est-il légal ?",
+    "answer": "Le service consiste à régler, pour votre compte et avec votre accord explicite, une facture ou des frais dus à un fournisseur académique international identifié (revue, éditeur, plateforme d'examen ou de logiciel). Vous réglez en dirhams et recevez une preuve de paiement et une référence de transaction pour chaque opération. Aucune passerelle de paiement en ligne ni compte utilisateur n'est proposé sur ce site : chaque opération est négociée et confirmée individuellement avant exécution."
+  },
+  {
+    "id": "securite-donnees",
+    "question": "Mes données de recherche sont-elles en sécurité ?",
+    "answer": "Je ne demande jamais l'accès à votre manuscrit, vos données de recherche ou vos identifiants de compte personnels. Les seules informations nécessaires sont celles liées au paiement lui-même (référence de la facture, montant, coordonnées du fournisseur)."
+  },
+  {
+    "id": "delais",
+    "question": "Quels sont les délais de traitement ?",
+    "answer": "La plupart des paiements sont effectués sous 24 à 72h ouvrées après réception de votre règlement en dirhams, selon la disponibilité du fournisseur et le mode de paiement requis. Les délais spécifiques à votre demande sont confirmés avant tout engagement, notamment pour les frais d'examens soumis à une date limite."
+  },
+  {
+    "id": "moyens-paiement",
+    "question": "Comment puis-je vous régler en dirhams ?",
+    "answer": "Le règlement se fait par virement bancaire ou via Cash Plus. Les coordonnées et modalités précises vous sont communiquées après votre prise de contact, une fois le montant et le service confirmés."
+  },
+  {
+    "id": "preuve",
+    "question": "Quelle preuve je reçois après le paiement ?",
+    "answer": "Pour chaque opération : la facture ou le reçu émis par le fournisseur, ainsi que la référence de transaction correspondante. Ces documents suffisent généralement pour vos justificatifs de laboratoire, de bourse ou de remboursement."
+  },
+  {
+    "id": "revues-predatrices",
+    "question": "Comment vérifiez-vous qu'une revue n'est pas prédatrice ?",
+    "answer": "Avant tout paiement de frais de publication, je vérifie l'indexation de la revue, la cohérence de son comité éditorial et sa présence éventuelle sur des listes de vigilance reconnues. Si un doute sérieux subsiste, je vous en informe avant que vous n'engagiez la dépense."
+  },
+  {
+    "id": "dotation-change",
+    "question": "Est-ce que passer par vous consomme ma dotation personnelle de change ?",
+    "answer": "Non. Le règlement du service international se fait via notre propre canal de paiement, pas via votre dotation individuelle. Votre plafond annuel de change reste donc disponible pour vos besoins personnels : achats en ligne, ou paiements par carte lors de vos déplacements à l'étranger."
+  },
+  {
+    "id": "montant-minimum",
+    "question": "Y a-t-il un montant minimum ou maximum ?",
+    "answer": "Non, chaque demande est étudiée au cas par cas. Contactez-moi avec le montant approximatif de votre besoin pour recevoir une confirmation rapide de faisabilité et de commission."
+  },
+  {
+    "id": "confidentialite",
+    "question": "Mes informations personnelles sont-elles partagées ?",
+    "answer": "Non. Les informations transmises via le formulaire de contact servent uniquement à traiter votre demande et ne sont ni revendues ni partagées avec des tiers."
+  }
+]

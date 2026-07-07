@@ -1,0 +1,24 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "howItWorks": "Comment ça marche",
+    "pricing": "Tarifs",
+    "trust": "Confiance",
+    "testimonials": "Témoignages",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "cta": {
+    "contactUs": "Nous contacter",
+    "requestQuote": "Demander un devis",
+    "seeServices": "Voir les services",
+    "sendWhatsApp": "Écrire sur WhatsApp",
+    "sendMessage": "Envoyer le message"
+  },
+  "footer": {
+    "rightsReserved": "Tous droits réservés.",
+    "legalMentions": "Mentions légales",
+    "madeFor": "Service indépendant destiné aux chercheurs, doctorants et enseignants-chercheurs marocains."
+  }
+}

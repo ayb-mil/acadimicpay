@@ -1,0 +1,47 @@
+{
+  "siteName": "AcadPay",
+  "tagline": "Un accompagnement fiable et transparent pour vos paiements académiques internationaux",
+  "shortPitch": "Frais de publication, abonnements, conférences et examens internationaux : je règle vos fournisseurs à l'étranger quand la dotation e-commerce individuelle vous bloque, avec une preuve de paiement pour chaque opération.",
+  "founder": {
+    "name": "Ayoub El Mqarta",
+    "affiliation": "Université Moulay Ismaïl — ENS Meknès",
+    "status": "Doctorant / enseignant-chercheur"
+  },
+  "contact": {
+    "email": "ayoubelmqarta6@gmail.com",
+    "whatsappNumber": "212609933218",
+    "whatsappDisplay": "+212 6 09 93 32 18"
+  },
+  "steps": [
+    {
+      "title": "Vous envoyez votre demande",
+      "description": "Vous décrivez le paiement à effectuer (revue, plateforme, fournisseur) et le montant en devise. Vous réglez en dirhams par virement ou Cash Plus."
+    },
+    {
+      "title": "Je règle le fournisseur international",
+      "description": "Je procède au paiement auprès du fournisseur (revue, éditeur, plateforme d'examen ou de logiciel) dans les délais annoncés."
+    },
+    {
+      "title": "Vous recevez la preuve de paiement",
+      "description": "Facture, reçu et référence de transaction vous sont transmis pour vos justificatifs administratifs ou de recherche."
+    }
+  ],
+  "trustPoints": [
+    {
+      "title": "Identité vérifiable",
+      "description": "Statut académique réel (ENS Meknès, Université Moulay Ismaïl), coordonnées directes, échange possible par appel avant toute opération."
+    },
+    {
+      "title": "Documentation systématique",
+      "description": "Facture, reçu et référence de transaction fournis pour chaque paiement, sans exception."
+    },
+    {
+      "title": "Tarifs affichés",
+      "description": "Commission connue à l'avance, jamais de frais caché ou ajouté après coup."
+    },
+    {
+      "title": "Contre les revues prédatrices",
+      "description": "Vérification systématique de la légitimité de la revue ou de l'éditeur avant tout paiement de frais de publication."
+    }
+  ]
+}

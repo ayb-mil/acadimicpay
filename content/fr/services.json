@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "publication",
+    "order": 1,
+    "title": "Paiement des frais de publication (APC)",
+    "shortDescription": "Réglez les frais de publication (Article Processing Charges) de votre article dans une revue internationale.",
+    "icon": "document",
+    "intro": "Les revues en libre accès demandent souvent le paiement de frais de publication (APC) en dollars ou en euros, parfois via des moyens non disponibles pour un compte marocain standard. Je me charge du règlement auprès de l'éditeur ou de la plateforme de soumission.",
+    "details": [
+      "Paiement direct auprès de l'éditeur (Elsevier, Springer, MDPI, Frontiers, IEEE, etc.) ou via la plateforme de soumission en ligne.",
+      "Vérification préalable de la revue avant paiement (voir le service de vérification anti-revues prédatrices).",
+      "Transmission de la preuve de paiement et de la référence de transaction pour vos justificatifs de recherche ou de remboursement par votre laboratoire."
+    ],
+    "whoFor": "Doctorants, enseignants-chercheurs et chercheurs marocains publiant dans des revues internationales en libre accès ou hybrides."
+  },
+  {
+    "slug": "verification",
+    "order": 2,
+    "title": "Vérification anti-revues prédatrices",
+    "shortDescription": "Avant de payer des frais de publication, je vérifie la légitimité de la revue ou de l'éditeur.",
+    "icon": "shield",
+    "intro": "De nombreuses revues prédatrices ciblent les chercheurs pressés de publier, avec des frais élevés et aucune évaluation par les pairs sérieuse. Avant tout paiement, je vérifie la revue sur les bases de référence reconnues.",
+    "details": [
+      "Vérification du statut de la revue (indexation Scopus/Web of Science, présence sur des listes de vigilance reconnues).",
+      "Contrôle de la cohérence entre le comité éditorial affiché et l'activité réelle de la revue.",
+      "Alerte transparente si la revue présente des signaux de risque, avant tout engagement financier de votre part."
+    ],
+    "whoFor": "Tout chercheur souhaitant s'assurer, avant de payer, que la revue ou la conférence choisie est légitime."
+  },
+  {
+    "slug": "abonnements",
+    "order": 3,
+    "title": "Abonnements et logiciels académiques",
+    "shortDescription": "Réglez vos abonnements à des bases de données, logiciels de recherche ou outils académiques internationaux.",
+    "icon": "software",
+    "intro": "Abonnements IEEE/ACM, logiciels de statistiques ou de rédaction, outils de gestion bibliographique, accès à des bases de données spécialisées : je règle ces abonnements auprès du fournisseur lorsque le paiement direct depuis le Maroc n'est pas possible.",
+    "details": [
+      "Paiement d'abonnements individuels (pas de licences institutionnelles) : IEEE, ACM, outils de rédaction et de statistiques, gestionnaires bibliographiques.",
+      "Renouvellements ponctuels ou abonnements annuels selon vos besoins.",
+      "Preuve de paiement et référence transmises pour chaque opération."
+    ],
+    "whoFor": "Chercheurs et enseignants ayant besoin d'un accès individuel à des outils ou bases de données payants à l'étranger."
+  },
+  {
+    "slug": "examens",
+    "order": 4,
+    "title": "Frais d'examens internationaux",
+    "shortDescription": "Réglez les frais d'inscription à des examens internationaux (TOEFL, IELTS, GRE et équivalents).",
+    "icon": "exam",
+    "intro": "Les frais d'inscription aux examens internationaux requis pour une mobilité académique ou une bourse doivent souvent être réglés en devise étrangère, directement auprès de l'organisme organisateur.",
+    "details": [
+      "Paiement direct sur la plateforme officielle de l'organisme (ETS pour TOEFL/GRE, British Council/IDP pour IELTS, etc.).",
+      "Confirmation d'inscription et référence de paiement transmises dès le règlement effectué.",
+      "Accompagnement sur les délais à respecter avant la date de session choisie."
+    ],
+    "whoFor": "Étudiants, doctorants et enseignants-chercheurs préparant une mobilité, une bourse ou une candidature nécessitant un examen international."
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "no-crypto",
+    "icon": "no-crypto",
+    "title": "Zéro connaissance crypto requise",
+    "description": "Vous envoyez des dirhams normalement, nous gérons toute la complexité technique."
+  },
+  {
+    "id": "proof",
+    "icon": "receipt",
+    "title": "Une preuve pour chaque paiement",
+    "description": "Facture, reçu et référence de transaction systématiques, à chaque opération."
+  },
+  {
+    "id": "verification",
+    "icon": "shield",
+    "title": "Une vérification avant paiement",
+    "description": "Nous identifions les signaux de revues ou services frauduleux avant que vous ne payiez."
+  },
+  {
+    "id": "identified",
+    "icon": "user",
+    "title": "Un interlocuteur identifiable",
+    "description": "Pas un service anonyme : vous savez à qui vous parlez, avec un statut académique réel."
+  },
+  {
+    "id": "dotation",
+    "icon": "wallet",
+    "title": "Votre dotation annuelle reste intacte",
+    "description": "Le paiement passe par notre propre canal, pas par votre dotation individuelle de change (20 000 DH/an). Vous gardez cette dotation disponible pour vos propres achats en ligne ou vos paiements par carte à l'étranger."
+  }
+]
