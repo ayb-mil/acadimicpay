@@ -26,8 +26,9 @@ const fraunces = Fraunces({
 
 const site = getSiteContent();
 
-// Domaine de production (override possible via env pour les previews Vercel).
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://acadpay.me";
+// Domaine de production canonique (www). Override possible via env pour les
+// previews Vercel. L'apex acadpay.me redirige vers www côté Vercel.
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.acadpay.me";
 const TITLE = `${site.siteName} — ${site.tagline}`;
 
 export const metadata: Metadata = {
