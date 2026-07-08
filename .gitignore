@@ -24,6 +24,9 @@ yarn-error.log*
 .env
 .env*.local
 
+# script de diagnostic local (non commité)
+test-resend.mjs
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

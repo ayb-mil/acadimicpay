@@ -31,35 +31,57 @@ export async function POST(request: NextRequest) {
   const emailTo = process.env.CONTACT_EMAIL_TO;
   const emailFrom = process.env.CONTACT_EMAIL_FROM ?? "onboarding@resend.dev";
 
-  if (resendApiKey && emailTo) {
-    try {
-      const resend = new Resend(resendApiKey);
-      await resend.emails.send({
+  // Message d'erreur générique renvoyé au frontend : on ne prétend JAMAIS
+  // « succès » si l'email n'est pas réellement parti. L'utilisateur est
+  // réorienté vers WhatsApp, et la vraie cause est loggée côté serveur.
+  const failureMessage =
+    "Votre message n'a pas pu être envoyé pour le moment. Merci de nous écrire directement sur WhatsApp.";
+
+  // Sans configuration email, on NE renvoie PAS un faux succès.
+  if (!resendApiKey || !emailTo) {
+    console.error(
+      `Email non configuré — RESEND_API_KEY ${resendApiKey ? "présent" : "MANQUANT"}, ` +
+        `CONTACT_EMAIL_TO ${emailTo ? "présent" : "MANQUANT"}. Envoi impossible.`
+    );
+    return NextResponse.json({ error: failureMessage }, { status: 503 });
+  }
+
+  try {
+    const resend = new Resend(resendApiKey);
+
+    // ⚠️ Resend v4 ne LÈVE PAS d'exception sur erreur API : il faut inspecter
+    // le champ `error` du retour, sinon l'échec est silencieux.
+    const { data, error } = await resend.emails.send({
+      from: emailFrom,
+      to: emailTo,
+      replyTo: contact,
+      subject: `Nouvelle demande — ${service?.title ?? serviceSlug}`,
+      text: [
+        `Nom : ${name}`,
+        `Contact : ${contact}`,
+        `Service : ${service?.title ?? serviceSlug}`,
+        `Montant approximatif : ${amount || "non précisé"}`,
+        "",
+        "Message :",
+        message,
+      ].join("\n"),
+    });
+
+    if (error) {
+      // Cause réelle visible dans les logs Vercel (ex. domaine non vérifié,
+      // expéditeur invalide, destinataire non autorisé en mode test…).
+      console.error("Resend a renvoyé une erreur :", JSON.stringify(error), {
         from: emailFrom,
         to: emailTo,
-        replyTo: contact,
-        subject: `Nouvelle demande — ${service?.title ?? serviceSlug}`,
-        text: [
-          `Nom : ${name}`,
-          `Contact : ${contact}`,
-          `Service : ${service?.title ?? serviceSlug}`,
-          `Montant approximatif : ${amount || "non précisé"}`,
-          "",
-          "Message :",
-          message,
-        ].join("\n"),
       });
-    } catch (error) {
-      console.error("Failed to send contact email", error);
-      return NextResponse.json(
-        { error: "Le message a été enregistré mais l'email n'a pas pu être envoyé." },
-        { status: 502 }
-      );
+      return NextResponse.json({ error: failureMessage }, { status: 502 });
     }
-  } else {
-    console.warn(
-      "RESEND_API_KEY or CONTACT_EMAIL_TO not configured — email sending skipped, submission stored only."
-    );
+
+    console.log("Email de contact envoyé — id Resend :", data?.id);
+  } catch (err) {
+    // Exception réseau/inattendue (rare avec Resend v4).
+    console.error("Exception lors de l'envoi de l'email de contact :", err);
+    return NextResponse.json({ error: failureMessage }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });
