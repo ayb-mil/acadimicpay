@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
-import PricingTable from "@/components/PricingTable";
+import PricingGrid from "@/components/PricingGrid";
 import DotationCalculator from "@/components/DotationCalculator";
 import CTAButton from "@/components/CTAButton";
-import { getPricing } from "@/lib/content";
+import { getPricingGrid } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Tarifs",
@@ -12,22 +12,20 @@ export const metadata: Metadata = {
 };
 
 export default function PricingPage() {
-  const pricing = getPricing();
+  const pricingGrid = getPricingGrid();
 
   return (
     <Container className="py-16 sm:py-20">
       <SectionHeading
         eyebrow="Tarifs"
         title="Une commission connue à l'avance, jamais de frais caché"
-        description="Le taux ou le forfait de commission est confirmé avant tout paiement. Le taux de change appliqué est celui du jour du règlement."
+        description="Nos frais dépendent uniquement du montant à régler. Le barème est fixe et communiqué avant tout paiement."
       />
-      <div className="mt-10">
-        <PricingTable items={pricing} />
+      <div className="mt-10 max-w-3xl">
+        <PricingGrid grid={pricingGrid} />
       </div>
-      <p className="mt-6 max-w-2xl text-sm leading-relaxed text-ardoise">
-        Ces montants sont indicatifs et peuvent être ajustés selon la complexité de l&apos;opération
-        (nombre de fournisseurs, urgence, devise). Le montant exact vous est toujours communiqué
-        avant que vous ne régliez quoi que ce soit.
+      <p className="mt-8 max-w-2xl text-sm leading-relaxed text-ardoise">
+        Le montant exact vous est toujours confirmé avant que vous ne régliez quoi que ce soit.
       </p>
       <div className="mt-12 max-w-3xl">
         <DotationCalculator />

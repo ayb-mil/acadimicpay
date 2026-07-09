@@ -6,7 +6,7 @@ import type {
   FaqItem,
   Locale,
   PredatoryGuide,
-  PricingItem,
+  PricingGrid,
   Service,
   SiteContent,
   Testimonial,
@@ -53,8 +53,8 @@ export function getFaq(locale: Locale = DEFAULT_LOCALE): FaqItem[] {
   return readJson<FaqItem[]>(locale, "faq.json");
 }
 
-export function getPricing(locale: Locale = DEFAULT_LOCALE): PricingItem[] {
-  return readJson<PricingItem[]>(locale, "pricing.json");
+export function getPricingGrid(locale: Locale = DEFAULT_LOCALE): PricingGrid {
+  return readJson<PricingGrid>(locale, "pricing.json");
 }
 
 export function getBenefits(locale: Locale = DEFAULT_LOCALE): Benefit[] {

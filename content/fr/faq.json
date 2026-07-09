@@ -43,5 +43,10 @@
     "id": "confidentialite",
     "question": "Mes informations personnelles sont-elles partagées ?",
     "answer": "Non. Les informations transmises via le formulaire de contact servent uniquement à traiter votre demande et ne sont ni revendues ni partagées avec des tiers."
+  },
+  {
+    "id": "references",
+    "question": "Avec quels professeurs avez-vous travaillé ? Puis-je avoir des références ?",
+    "answer": "Par respect pour la confidentialité de mes clients, je ne partage pas leurs noms ni les détails de leurs opérations — la même confidentialité s'appliquera à vos propres échanges avec moi. En contrepartie, je travaille sous mon identité réelle et vérifiable (voir la page « Confiance »), je peux présenter ma carte d'étudiant sur demande, et chaque opération est documentée par une facture et une référence de transaction."
   }
 ]

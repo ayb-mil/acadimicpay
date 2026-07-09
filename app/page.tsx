@@ -5,13 +5,11 @@ import StepsList from "@/components/StepsList";
 import ServiceCard from "@/components/ServiceCard";
 import BenefitCard from "@/components/BenefitCard";
 import CaseStudyCard from "@/components/CaseStudyCard";
-import TestimonialCard from "@/components/TestimonialCard";
 import CTAButton from "@/components/CTAButton";
 import Reveal from "@/components/Reveal";
 import {
   getSiteContent,
   getServices,
-  getTestimonials,
   getBenefits,
   getCaseStudy,
 } from "@/lib/content";
@@ -19,7 +17,6 @@ import {
 export default function HomePage() {
   const site = getSiteContent();
   const services = getServices();
-  const testimonials = getTestimonials().slice(0, 3);
   const benefits = getBenefits();
   const caseStudy = getCaseStudy();
 
@@ -86,24 +83,6 @@ export default function HomePage() {
             <Reveal>
               <CaseStudyCard caseStudy={caseStudy} preview />
             </Reveal>
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Témoignages"
-              title="Ce qu'en disent les chercheurs"
-            />
-          </Reveal>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((testimonial, index) => (
-              <Reveal key={testimonial.id} delay={index * 90}>
-                <TestimonialCard testimonial={testimonial} />
-              </Reveal>
-            ))}
           </div>
         </Container>
       </section>

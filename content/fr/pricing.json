@@ -1,30 +1,9 @@
-[
-  {
-    "id": "publication",
-    "service": "Frais de publication (APC)",
-    "commissionType": "Pourcentage",
-    "commissionDetail": "8% du montant réglé, minimum 150 MAD",
-    "example": "Pour des frais de publication de 1 000 USD, commission d'environ 80 USD (converti en dirhams au taux du jour du règlement)."
-  },
-  {
-    "id": "verification",
-    "service": "Vérification anti-revues prédatrices",
-    "commissionType": "Forfait",
-    "commissionDetail": "Offert si suivi d'un paiement via le service ; 100 MAD si vérification seule",
-    "example": "Vérification seule sans paiement associé : 100 MAD forfaitaires."
-  },
-  {
-    "id": "abonnements",
-    "service": "Abonnements et logiciels académiques",
-    "commissionType": "Pourcentage",
-    "commissionDetail": "10% du montant réglé, minimum 100 MAD",
-    "example": "Pour un abonnement annuel de 200 USD, commission d'environ 20 USD."
-  },
-  {
-    "id": "examens",
-    "service": "Frais d'examens internationaux",
-    "commissionType": "Forfait",
-    "commissionDetail": "200 MAD par inscription, quel que soit le montant des frais d'examen",
-    "example": "Frais TOEFL de 195 USD réglés + commission fixe de 200 MAD."
-  }
-]
+{
+  "tiers": [
+    { "range": "Moins de 200 $", "fee": "Frais fixe de 100 DH" },
+    { "range": "200 $ à 1 000 $", "fee": "Commission de 5 %" },
+    { "range": "Plus de 1 000 $", "fee": "Commission de 4 %" }
+  ],
+  "example": "Exemple : des frais de publication de 500 $ (≈ 4 600 DH) → commission de 5 % ≈ 230 DH. Total à régler : environ 4 830 DH.",
+  "exchangeNote": "Le taux de change appliqué est indicatif et confirmé au moment de l'opération."
+}

@@ -8,10 +8,10 @@ import type { UiDictionary } from "@/types/content";
 const links = [
   { href: "/", key: "home" },
   { href: "/services", key: "services" },
+  { href: "/services/verification", key: "verification" },
   { href: "/comment-ca-marche", key: "howItWorks" },
   { href: "/tarifs", key: "pricing" },
   { href: "/confiance", key: "trust" },
-  { href: "/temoignages", key: "testimonials" },
   { href: "/faq", key: "faq" },
 ];
 

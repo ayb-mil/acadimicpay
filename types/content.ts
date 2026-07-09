@@ -18,6 +18,14 @@ export interface SiteContent {
     name: string;
     affiliation: string;
     status: string;
+    /** Photo de profil (chemin dans /public, ex: /images/photo.jpg). Optionnel. */
+    photo?: string;
+    /** Lien externe ouvert au clic sur la photo (ex: publication Facebook). */
+    photoUrl?: string;
+    /** Légende discrète sous la photo indiquant où mène le lien. */
+    photoCaption?: string;
+    /** Texte de présentation affiché sous la photo. */
+    bio?: string;
   };
   contact: {
     email: string;
@@ -53,12 +61,17 @@ export interface FaqItem {
   answer: string;
 }
 
-export interface PricingItem {
-  id: string;
-  service: string;
-  commissionType: string;
-  commissionDetail: string;
+/** Un palier du barème tarifaire (par tranche de montant). */
+export interface PricingTier {
+  range: string;
+  fee: string;
+}
+
+/** Barème tarifaire complet : paliers + exemple de calcul + note de change. */
+export interface PricingGrid {
+  tiers: PricingTier[];
   example: string;
+  exchangeNote: string;
 }
 
 export interface UiDictionary {
