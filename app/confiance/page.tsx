@@ -80,7 +80,7 @@ export default function TrustPage() {
             <p>
               Mon affiliation académique réelle et mes coordonnées directes sont communiquées dès le
               premier contact. Un échange par appel est possible avant toute opération, en
-              particulier pour les montants importants.
+              particulier pour les montants importants. (SVP Veuillez consulter la page des questions fréquentes FAQ).
             </p>
           </div>
         </div>
