@@ -1,10 +1,5 @@
 [
   {
-    "id": "legalite",
-    "question": "Ce service est-il légal ?",
-    "answer": "Le service consiste à régler, pour votre compte et avec votre accord explicite, une facture ou des frais dus à un fournisseur académique international identifié (revue, éditeur, plateforme d'examen ou de logiciel). Vous réglez en dirhams et recevez une preuve de paiement et une référence de transaction pour chaque opération. Aucune passerelle de paiement en ligne ni compte utilisateur n'est proposé sur ce site : chaque opération est négociée et confirmée individuellement avant exécution."
-  },
-  {
     "id": "securite-donnees",
     "question": "Mes données de recherche sont-elles en sécurité ?",
     "answer": "Je ne demande jamais l'accès à votre manuscrit, vos données de recherche ou vos identifiants de compte personnels. Les seules informations nécessaires sont celles liées au paiement lui-même (référence de la facture, montant, coordonnées du fournisseur)."
@@ -40,6 +35,13 @@
     "answer": "Non, chaque demande est étudiée au cas par cas. Contactez-moi avec le montant approximatif de votre besoin pour recevoir une confirmation rapide de faisabilité et de commission."
   },
   {
+    "id": "legalite",
+    "question": "Ce service est-il légal ?",
+    "answer": " AcadPay n'est pas un simple service de change ou de transfert d'argent isolé. C'est un accompagnement académique complet, où le règlement de votre
+facture internationale n'est qu'une étape parmi d'autres : vérification de la légitimité de la revue ou du service, conseils sur le choix de la revue ou la démarche à suivre, puis exécution du paiement — le tout dans un seul
+service, à un seul prix. Vous ne payez pas un transfert : vous payez unaccompagnement, et le paiement en fait partie.
+  },
+{
     "id": "confidentialite",
     "question": "Mes informations personnelles sont-elles partagées ?",
     "answer": "Non. Les informations transmises via le formulaire de contact servent uniquement à traiter votre demande et ne sont ni revendues ni partagées avec des tiers."
