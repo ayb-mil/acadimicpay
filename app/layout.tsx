@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import { getSiteContent } from "@/lib/content";
 import { getDictionary } from "@/lib/i18n";
+import { Analytics } from "@vercel/analytics/next";
 
 // Corps & interface : sans humaniste, très lisible.
 const inter = Inter({
