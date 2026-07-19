@@ -7,8 +7,8 @@ import type { CSSProperties } from "react";
    CONSTANTES À ÉDITER — tout est ici, rien de dispersé dans le JSX.
    ══════════════════════════════════════════════════════════════════════════ */
 
-/** Numéro WhatsApp au format international sans « + ». À remplacer. */
-const WHATSAPP = "212XXXXXXXXX";
+/** Numéro WhatsApp au format international sans « + » (= +212 6 09 93 32 18). */
+const WHATSAPP = "212609933218";
 
 /** Devise affichée partout. */
 const CURRENCY = "MAD";
@@ -34,7 +34,8 @@ const OFFERS = {
 /** Bloc « À propos ». `photo` vide → emplacement gris affiché. */
 const ABOUT = {
   name: "Ayoub El Mqarta",
-  photo: "", // ex : "/images/ayoub-el-mqarta.jpg"
+  // Même portrait que la page Confiance d'acadpay.me.
+  photo: "/images/ayoub-el-mqarta.jpg",
 };
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -122,14 +123,13 @@ const content = {
     portfolio: {
       title: "Exemples de réalisations",
       sub: "Aperçus de diapositives livrées.",
-      alt: (n: number) => `Exemple de diapositive ${n}`,
       open: "Agrandir",
       close: "Fermer",
     },
     reviews: {
       title: "Avis",
       quote: "Emplacement réservé : cet avis sera remplacé par un retour client réel.",
-      who: ["Étudiant, FST", "Étudiante, ENS", "Enseignant, Faculté"],
+      who: ["Étudiant, FST", "Étudiante, ENS"],
     },
     about: {
       title: "À propos",
@@ -233,14 +233,13 @@ const content = {
     portfolio: {
       title: "نماذج من الأعمال",
       sub: "لمحات من شرائح سبق تسليمها.",
-      alt: (n: number) => `نموذج شريحة ${n}`,
       open: "تكبير",
       close: "إغلاق",
     },
     reviews: {
       title: "آراء",
       quote: "مكان مخصّص: سيُستبدل هذا الرأي بشهادة زبون حقيقية.",
-      who: ["طالب، كلية العلوم والتقنيات", "طالبة، المدرسة العليا للأساتذة", "أستاذ، كلية"],
+      who: ["طالب، كلية العلوم والتقنيات", "طالبة، المدرسة العليا للأساتذة"],
     },
     about: {
       title: "من أنا",
@@ -344,14 +343,13 @@ const content = {
     portfolio: {
       title: "Examples of work",
       sub: "Previews of delivered slides.",
-      alt: (n: number) => `Slide example ${n}`,
       open: "Enlarge",
       close: "Close",
     },
     reviews: {
       title: "Reviews",
       quote: "Placeholder: this review will be replaced by a real client testimonial.",
-      who: ["Student, FST", "Student, ENS", "Teacher, Faculty"],
+      who: ["Student, FST", "Student, ENS"],
     },
     about: {
       title: "About",
@@ -386,7 +384,19 @@ const content = {
 
 /* ══════════════════════════════════════════════════════════════════════════ */
 
-const PORTFOLIO = [1, 2, 3, 4, 5, 6];
+/**
+ * Portfolio : les fichiers vivent dans /public/portfolio/.
+ * Remplacez les images par vos vraies captures (même noms) et ajustez les
+ * légendes ci-dessous. L'ordre d'affichage suit ce tableau.
+ */
+const PORTFOLIO = [
+  { file: "01.png", caption: "IT Services Workflow — infographies de processus" },
+  { file: "02.png", caption: "Quantum computing & matériaux — deck de recherche" },
+  { file: "03.png", caption: "Physique-Chimie — La quantité de matière" },
+  { file: "04.png", caption: "CVD et spectroscopie Mössbauer — exposé" },
+  { file: "05.png", caption: "Parcours académique & projet de recherche" },
+  { file: "06.png", caption: "Champ électrostatique — 1re Bac SM" },
+];
 
 /** Construit un lien WhatsApp avec message pré-rempli. */
 function waLink(message: string) {
@@ -721,22 +731,23 @@ export default function PresentationsPage() {
           <h2 className="text-xl font-bold">{t.portfolio.title}</h2>
           <p className="mt-1 text-sm text-[#5B6472]">{t.portfolio.sub}</p>
           <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {PORTFOLIO.map((n) => (
-              <li key={n}>
+            {PORTFOLIO.map((item, i) => (
+              <li key={item.file}>
                 <button
                   type="button"
-                  onClick={() => setLightbox(n)}
-                  aria-label={`${t.portfolio.open} — ${t.portfolio.alt(n)}`}
+                  onClick={() => setLightbox(i)}
+                  aria-label={`${t.portfolio.open} — ${item.caption}`}
                   className="block w-full overflow-hidden rounded-xl border border-[#E4E1DA] bg-white transition hover:border-[#1FA855] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#157F43]"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={`/portfolio/0${n}.png`}
-                    alt={t.portfolio.alt(n)}
+                    src={`/portfolio/${item.file}`}
+                    alt={item.caption}
                     loading="lazy"
                     className="aspect-video w-full object-cover"
                   />
                 </button>
+                <p className="mt-1.5 text-xs leading-snug text-[#5B6472]">{item.caption}</p>
               </li>
             ))}
           </ul>
@@ -746,7 +757,7 @@ export default function PresentationsPage() {
         {/* TODO: replace with real reviews */}
         <section className="mx-auto max-w-5xl px-4 pt-14 sm:px-6">
           <h2 className="text-xl font-bold">{t.reviews.title}</h2>
-          <ul className="mt-5 grid gap-4 sm:grid-cols-3">
+          <ul className="mt-5 grid gap-4 sm:grid-cols-2">
             {t.reviews.who.map((who) => (
               <li key={who} className={`${card} p-5`}>
                 <p className="text-sm leading-relaxed text-[#5B6472]">{t.reviews.quote}</p>
@@ -845,15 +856,15 @@ export default function PresentationsPage() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={t.portfolio.alt(lightbox)}
+          aria-label={PORTFOLIO[lightbox].caption}
           className="fixed inset-0 z-50 flex items-center justify-center bg-[#141A24]/80 p-4"
           onClick={closeLightbox}
         >
           <div className="relative w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`/portfolio/0${lightbox}.png`}
-              alt={t.portfolio.alt(lightbox)}
+              src={`/portfolio/${PORTFOLIO[lightbox].file}`}
+              alt={PORTFOLIO[lightbox].caption}
               className="w-full rounded-xl bg-white"
             />
             <button
