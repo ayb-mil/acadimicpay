@@ -390,12 +390,12 @@ const content = {
  * légendes ci-dessous. L'ordre d'affichage suit ce tableau.
  */
 const PORTFOLIO = [
-  { file: "01.png", caption: "IT Services Workflow — infographies de processus" },
-  { file: "02.png", caption: "Quantum computing & matériaux — deck de recherche" },
-  { file: "03.png", caption: "Physique-Chimie — La quantité de matière" },
-  { file: "04.png", caption: "CVD et spectroscopie Mössbauer — exposé" },
-  { file: "05.png", caption: "Parcours académique & projet de recherche" },
-  { file: "06.png", caption: "Champ électrostatique — 1re Bac SM" },
+  { file: "01.jpg", caption: "Nanomatériaux pour le hardware quantique — soutenance de master" },
+  { file: "02.jpg", caption: "CVD et spectroscopie Mössbauer — exposé" },
+  { file: "03.jpg", caption: "Quantité de matière & théories d'apprentissage — supports de cours" },
+  { file: "04.jpg", caption: "Champ électrostatique — 1re Bac SM" },
+  { file: "05.jpg", caption: "IT Services Workflow — infographies de processus" },
+  { file: "06.jpg", caption: "Ingénierie des défauts dans le hBN — résultats" },
 ];
 
 /** Construit un lien WhatsApp avec message pré-rempli. */
@@ -744,7 +744,7 @@ export default function PresentationsPage() {
                     src={`/portfolio/${item.file}`}
                     alt={item.caption}
                     loading="lazy"
-                    className="aspect-video w-full object-cover"
+                    className="aspect-video w-full bg-white object-contain"
                   />
                 </button>
                 <p className="mt-1.5 text-xs leading-snug text-[#5B6472]">{item.caption}</p>
