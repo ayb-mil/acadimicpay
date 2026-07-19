@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import { getSiteContent } from "@/lib/content";
-import { getDictionary } from "@/lib/i18n";
 
 // Corps & interface : sans humaniste, très lisible.
 const inter = Inter({
@@ -69,15 +65,15 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const dictionary = getDictionary();
-
   return (
     <html lang="fr" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="flex min-h-screen flex-col bg-papier font-sans text-encre antialiased">
-        <Header siteName={site.siteName} dictionary={dictionary} />
-        <main className="flex-1">{children}</main>
-        <Footer siteName={site.siteName} dictionary={dictionary} />
-        <WhatsAppFloatingButton phoneNumber={site.contact.whatsappNumber} />
+        {/*
+          Layout racine volontairement minimal : le header/footer AcadPay vivent
+          dans app/(site)/layout.tsx, ce qui permet aux offres autonomes
+          (ex. /presentations) d'avoir leur propre identité visuelle.
+        */}
+        {children}
         <Analytics />
       </body>
     </html>

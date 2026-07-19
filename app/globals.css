@@ -38,6 +38,22 @@
 
 @layer components {
   /*
+   * Page /presentations (offre autonome) : les polices sont pilotées par des
+   * variables posées en inline selon la langue choisie (latin vs arabe).
+   * Scopé via [data-presentations] pour n'affecter que cette page.
+   */
+  [data-presentations] {
+    font-family: var(--ui-body), system-ui, sans-serif;
+  }
+
+  [data-presentations] h1,
+  [data-presentations] h2,
+  [data-presentations] h3,
+  [data-presentations] .ui-display {
+    font-family: var(--ui-display), system-ui, sans-serif;
+  }
+
+  /*
    * Scroll-reveal léger et réutilisable.
    * L'élément est masqué au départ (.reveal) puis révélé quand il entre
    * dans le viewport (.reveal.is-visible) via IntersectionObserver.
