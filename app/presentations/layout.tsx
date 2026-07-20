@@ -23,7 +23,8 @@ export const metadata: Metadata = {
   title: { absolute: "Présentations soignées — .pptx et PDF" },
   description:
     "Mise en forme et rédaction de présentations pour soutenances, exposés et supports de cours. Livrées en .pptx et PDF, en arabe, français ou anglais.",
-  // Offre distincte : on ne la référence pas dans le sitemap AcadPay.
+  // Indexable et présente dans le sitemap, mais jamais liée depuis la
+  // navigation AcadPay : les deux positionnements restent séparés.
   robots: { index: true, follow: true },
 };
 

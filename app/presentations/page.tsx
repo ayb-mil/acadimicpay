@@ -20,14 +20,14 @@ const CURRENCY = "MAD";
  * - `packs` : forfaits tout compris (contenu rédigé + animations inclus).
  */
 const OFFERS = {
-  base: { slides: 15, price: 120, days: 1 },
+  base: { slides: 15, price: 60, days: 1 },
   addons: {
-    content: { price: 80, days: 1 },
-    animations: { price: 40, days: 1 },
+    content: { price: 40, days: 1 },
+    animations: { price: 20, days: 1 },
   },
   packs: [
-    { slides: 30, price: 300, days: 3 },
-    { slides: 60, price: 550, days: 4 },
+    { slides: 30, price: 150, days: 3 },
+    { slides: 60, price: 275, days: 4 },
   ],
 } as const;
 

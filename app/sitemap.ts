@@ -25,6 +25,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/contact", priority: 0.8 },
     { path: "/verification/comment-reconnaitre-une-revue-predatrice", priority: 0.7 },
     { path: "/faq", priority: 0.6 },
+    // Offre autonome (conception de présentations) : référencée pour être
+    // trouvable sur Google, mais toujours pas liée depuis la navigation AcadPay.
+    { path: "/presentations", priority: 0.8 },
     { path: "/mentions-legales", priority: 0.3 },
   ];
 
