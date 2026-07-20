@@ -122,7 +122,8 @@ const content = {
     },
     portfolio: {
       title: "Exemples de réalisations",
-      sub: "Aperçus de diapositives livrées.",
+      sub: "Aperçus de présentations que j'ai réalisées.",
+      note: "Ces exemples sont mes projets personnels. J'ai réalisé bien d'autres présentations, mais je ne publie jamais le travail de mes clients : leur contenu reste confidentiel.",
       open: "Agrandir",
       close: "Fermer",
     },
@@ -232,7 +233,8 @@ const content = {
     },
     portfolio: {
       title: "نماذج من الأعمال",
-      sub: "لمحات من شرائح سبق تسليمها.",
+      sub: "لمحات من عروض تقديمية أنجزتُها.",
+      note: "هذه النماذج من مشاريعي الشخصية. أنجزتُ أعمالاً أخرى كثيرة، لكنني لا أنشر أبداً أعمال زبنائي: محتواها يبقى سرياً.",
       open: "تكبير",
       close: "إغلاق",
     },
@@ -342,7 +344,8 @@ const content = {
     },
     portfolio: {
       title: "Examples of work",
-      sub: "Previews of delivered slides.",
+      sub: "Previews of presentations I have made.",
+      note: "These examples are my personal projects. I have produced many more presentations, but I never publish my clients' work: their content stays confidential.",
       open: "Enlarge",
       close: "Close",
     },
@@ -751,6 +754,11 @@ export default function PresentationsPage() {
               </li>
             ))}
           </ul>
+          {/* Confidentialité : beaucoup d'autres travaux, jamais ceux des clients. */}
+          <p className="mt-6 flex max-w-2xl gap-2.5 rounded-xl border border-[#E4E1DA] bg-white p-4 text-sm leading-relaxed text-[#5B6472]">
+            <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#1FA855]" />
+            <span>{t.portfolio.note}</span>
+          </p>
         </section>
 
         {/* ─────────── Avis ─────────── */}
