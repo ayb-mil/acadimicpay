@@ -31,6 +31,13 @@ const OFFERS = {
   ],
 } as const;
 
+/**
+ * Section « Avis » : masquée tant qu'il n'y a pas de vrais retours clients.
+ * Passer à `true` dès le premier témoignage réel, puis remplacer le texte et
+ * les attributions dans `content.{fr,ar,en}.reviews`. Rien d'autre à toucher.
+ */
+const SHOW_REVIEWS = false;
+
 /** Bloc « À propos ». `photo` vide → emplacement gris affiché. */
 const ABOUT = {
   name: "Ayoub El Mqarta",
@@ -762,18 +769,21 @@ export default function PresentationsPage() {
         </section>
 
         {/* ─────────── Avis ─────────── */}
-        {/* TODO: replace with real reviews */}
-        <section className="mx-auto max-w-5xl px-4 pt-14 sm:px-6">
-          <h2 className="text-xl font-bold">{t.reviews.title}</h2>
-          <ul className="mt-5 grid gap-4 sm:grid-cols-2">
-            {t.reviews.who.map((who) => (
-              <li key={who} className={`${card} p-5`}>
-                <p className="text-sm leading-relaxed text-[#5B6472]">{t.reviews.quote}</p>
-                <p className="mt-3 border-t border-[#E4E1DA] pt-3 text-xs font-semibold">{who}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {/* Masqué via SHOW_REVIEWS tant qu'il n'y a pas de vrais retours clients
+            (pas de fausse preuve sociale). TODO: replace with real reviews. */}
+        {SHOW_REVIEWS && (
+          <section className="mx-auto max-w-5xl px-4 pt-14 sm:px-6">
+            <h2 className="text-xl font-bold">{t.reviews.title}</h2>
+            <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+              {t.reviews.who.map((who) => (
+                <li key={who} className={`${card} p-5`}>
+                  <p className="text-sm leading-relaxed text-[#5B6472]">{t.reviews.quote}</p>
+                  <p className="mt-3 border-t border-[#E4E1DA] pt-3 text-xs font-semibold">{who}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {/* ─────────── À propos ─────────── */}
         <section className="mx-auto max-w-5xl px-4 pt-14 sm:px-6">
