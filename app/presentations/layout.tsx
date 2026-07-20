@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, IBM_Plex_Sans_Arabic } from "next/font/google";
+import Script from "next/script";
 import type { ReactNode } from "react";
+
+// Identifiant du projet Microsoft Clarity, propre à cette page (analyse
+// scoping à /presentations uniquement, pas au reste d'AcadPay).
+const CLARITY_PROJECT_ID = "xpdx5cy4pl";
 
 // Display latin (FR/EN). Sans chaleureux, lisible sur mobile.
 const display = Plus_Jakarta_Sans({
@@ -30,6 +35,23 @@ export const metadata: Metadata = {
 
 export default function PresentationsLayout({ children }: { children: ReactNode }) {
   return (
-    <div className={`${display.variable} ${arabic.variable}`}>{children}</div>
+    <div className={`${display.variable} ${arabic.variable}`}>
+      {children}
+
+      {/*
+        Microsoft Clarity — chargé après hydratation (afterInteractive) pour
+        ne pas retarder le rendu initial. Scopé à /presentations : ce script
+        vit dans ce layout, pas dans le layout racine d'AcadPay.
+      */}
+      <Script id="microsoft-clarity" strategy="afterInteractive">
+        {`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");
+        `}
+      </Script>
+    </div>
   );
 }
