@@ -63,7 +63,7 @@ const content = {
     wordmark: "Présentations",
     langAria: "Choisir la langue",
     hero: {
-      h1: "Vos présentations, mises en forme et prêtes à présenter",
+      h1: "Conception de présentations professionnelles (pptx, Canva, Google Slides, Prezi)",
       sub: "Soutenances, exposés, supports de cours. Livrées en .pptx et PDF, en arabe, français ou anglais.",
       cta: "Contacter sur WhatsApp",
       cta2: "Voir les tarifs",
@@ -174,7 +174,7 @@ const content = {
     wordmark: "عروض تقديمية",
     langAria: "اختيار اللغة",
     hero: {
-      h1: "عروض تقديمية منسّقة، جاهزة للعرض",
+      h1: "تصميم عروض بوربوينت احترافية (pptx, Canva, Google Slides, Prezi)",
       sub: "مناقشات، عروض، ودعامات دروس. تُسلَّم بصيغة .pptx و PDF، بالعربية أو الفرنسية أو الإنجليزية.",
       cta: "تواصل عبر واتساب",
       cta2: "الاطلاع على الأسعار",
@@ -285,7 +285,7 @@ const content = {
     wordmark: "Presentations",
     langAria: "Choose language",
     hero: {
-      h1: "Presentations, formatted and ready to present",
+      h1: "Professional presentation design (pptx, Canva, Google Slides, Prezi)",
       sub: "Defences, class presentations, course decks. Delivered as .pptx and PDF, in Arabic, French or English.",
       cta: "Contact on WhatsApp",
       cta2: "See prices",
@@ -497,7 +497,7 @@ export default function PresentationsPage() {
           "--ui-display": isAr ? "var(--font-arabic)" : "var(--font-display)",
         } as CSSProperties
       }
-      className="min-h-screen bg-[#FBFAF7] text-[#141A24]"
+      className="min-h-screen overflow-x-hidden bg-[#FBFAF7] text-[#141A24]"
     >
       {/* ─────────── Header ─────────── */}
       <header className="border-b border-[#E4E1DA] bg-[#FBFAF7]/90 backdrop-blur">
@@ -529,18 +529,29 @@ export default function PresentationsPage() {
 
       <main className="pb-28 sm:pb-16">
         {/* ─────────── Hero ─────────── */}
-        <section className="mx-auto max-w-5xl px-4 pt-12 sm:px-6 sm:pt-16">
-          <h1 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-            {t.hero.h1}
-          </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-[#5B6472]">{t.hero.sub}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a href={heroHref} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
-              {t.hero.cta}
-            </a>
-            <a href="#tarifs" className={btnGhost}>
-              {t.hero.cta2}
-            </a>
+        <section className="relative mx-auto max-w-5xl px-4 pt-12 sm:px-6 sm:pt-16">
+          {/* Illustration en arrière-plan : masquée sur mobile pour préserver la
+              lisibilité (la majorité des visites viennent d'un lien WhatsApp mobile). */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/presentations/hero-devices.webp"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute -end-6 top-2 hidden w-[30rem] select-none opacity-95 md:block lg:-end-10 lg:top-0 lg:w-[38rem] xl:w-[42rem]"
+          />
+          <div className="relative max-w-2xl">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+              {t.hero.h1}
+            </h1>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-[#5B6472]">{t.hero.sub}</p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href={heroHref} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
+                {t.hero.cta}
+              </a>
+              <a href="#tarifs" className={btnGhost}>
+                {t.hero.cta2}
+              </a>
+            </div>
           </div>
         </section>
 
