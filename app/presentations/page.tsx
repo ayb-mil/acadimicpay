@@ -20,14 +20,14 @@ const CURRENCY = "MAD";
  * - `packs` : forfaits tout compris (contenu rédigé + animations inclus).
  */
 const OFFERS = {
-  base: { slides: 15, price: 60, days: 1 },
+  base: { slides: 15, price: 50, days: 1 },
   addons: {
-    content: { price: 40, days: 1 },
-    animations: { price: 20, days: 1 },
+    content: { price: 30, days: 1 },
+    animations: { price: 10, days: 1 },
   },
   packs: [
-    { slides: 30, price: 150, days: 3 },
-    { slides: 60, price: 275, days: 4 },
+    { slides: 30, price: 140, days: 3 },
+    { slides: 60, price: 265, days: 4 },
   ],
 } as const;
 
@@ -406,6 +406,7 @@ const PORTFOLIO = [
   { file: "04.jpg", caption: "Champ électrostatique — 1re Bac SM" },
   { file: "05.jpg", caption: "IT Services Workflow — infographies de processus" },
   { file: "06.jpg", caption: "Ingénierie des défauts dans le hBN — résultats" },
+  { file: "07.jpg", caption: "Parcours académique & projet de recherche" },
 ];
 
 /** Construit un lien WhatsApp avec message pré-rempli. */
@@ -414,7 +415,7 @@ function waLink(message: string) {
 }
 
 export default function PresentationsPage() {
-  const [locale, setLocale] = useState<Locale>("fr");
+  const [locale, setLocale] = useState<Locale>("ar");
   const [audience, setAudience] = useState<"student" | "teacher">("student");
   const [slides, setSlides] = useState<number>(OFFERS.base.slides);
   const [addContent, setAddContent] = useState(false);
