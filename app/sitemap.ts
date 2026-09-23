@@ -28,6 +28,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Offre autonome (conception de présentations) : référencée pour être
     // trouvable sur Google, mais toujours pas liée depuis la navigation AcadPay.
     { path: "/presentations", priority: 0.8 },
+    // Offre autonome (simulations physique-chimie) : même traitement que
+    // /presentations, référencée mais pas liée depuis la navigation AcadPay.
+    { path: "/simulations", priority: 0.8 },
     { path: "/mentions-legales", priority: 0.3 },
   ];
 
