@@ -55,13 +55,17 @@ const content = {
     },
     demos: {
       title: "Simulations déjà en ligne",
-      sub: "Quatre exemples fonctionnels, à tester dès maintenant.",
+      sub: "Huit exemples fonctionnels, à tester dès maintenant.",
       cta: "Ouvrir",
       items: [
         { title: "Mouvement d'un projectile", href: "/simulations/mouvement-projectile" },
         { title: "Pendule simple", href: "/simulations/pendule-simple" },
         { title: "Charge et décharge d'un condensateur", href: "/simulations/circuit-rc" },
         { title: "Titrage acido-basique", href: "/simulations/titrage-acido-basique" },
+        { title: "Oscillations libres dans un dipôle RLC", href: "/simulations/oscillateur-rlc" },
+        { title: "Décroissance radioactive", href: "/simulations/decroissance-radioactive" },
+        { title: "Réfraction de la lumière", href: "/simulations/refraction-lumiere" },
+        { title: "Pile Daniell", href: "/simulations/pile-daniell" },
       ],
     },
     pricing: {
@@ -128,13 +132,17 @@ const content = {
     },
     demos: {
       title: "محاكاة متوفرة الآن",
-      sub: "أربعة أمثلة تشتغل فعلياً، جرّبها الآن.",
+      sub: "ثماني أمثلة تشتغل فعلياً، جرّبها الآن.",
       cta: "فتح",
       items: [
         { title: "حركة قذيفة", href: "/simulations/mouvement-projectile" },
         { title: "البندول البسيط", href: "/simulations/pendule-simple" },
         { title: "شحن وتفريغ مكثف", href: "/simulations/circuit-rc" },
         { title: "المعايرة الحمضية القاعدية", href: "/simulations/titrage-acido-basique" },
+        { title: "التذبذبات الحرة في ثنائي القطب RLC", href: "/simulations/oscillateur-rlc" },
+        { title: "التناقص الإشعاعي", href: "/simulations/decroissance-radioactive" },
+        { title: "انكسار الضوء", href: "/simulations/refraction-lumiere" },
+        { title: "عمود دانيال", href: "/simulations/pile-daniell" },
       ],
     },
     pricing: {
@@ -201,13 +209,17 @@ const content = {
     },
     demos: {
       title: "Simulations already online",
-      sub: "Four working examples, ready to try now.",
+      sub: "Eight working examples, ready to try now.",
       cta: "Open",
       items: [
         { title: "Projectile motion", href: "/simulations/mouvement-projectile" },
         { title: "Simple pendulum", href: "/simulations/pendule-simple" },
         { title: "Capacitor charge and discharge", href: "/simulations/circuit-rc" },
         { title: "Acid-base titration", href: "/simulations/titrage-acido-basique" },
+        { title: "Free oscillations in an RLC dipole", href: "/simulations/oscillateur-rlc" },
+        { title: "Radioactive decay", href: "/simulations/decroissance-radioactive" },
+        { title: "Refraction of light", href: "/simulations/refraction-lumiere" },
+        { title: "Daniell cell", href: "/simulations/pile-daniell" },
       ],
     },
     pricing: {
