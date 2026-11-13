@@ -54,6 +54,38 @@
   }
 
   /*
+   * Redesign "Modern Premium Academic" de /presentations : texte en dégradé
+   * (teal → violet) et blobs décoratifs flottants dans le hero/footer sombres.
+   * Les animations ci-dessous sont déjà neutralisées par la règle globale
+   * prefers-reduced-motion (sélecteur `*`) plus bas dans ce fichier.
+   */
+  [data-presentations] .grad-text {
+    background-image: linear-gradient(135deg, #2dd4cf 0%, #8b7cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  [data-presentations] .ambient-blob {
+    animation: presentations-float 9s ease-in-out infinite;
+  }
+
+  [data-presentations] .ambient-blob-slow {
+    animation: presentations-float 13s ease-in-out infinite;
+    animation-delay: -4s;
+  }
+
+  @keyframes presentations-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(0, -18px, 0) scale(1.05);
+    }
+  }
+
+  /*
    * Scroll-reveal léger et réutilisable.
    * L'élément est masqué au départ (.reveal) puis révélé quand il entre
    * dans le viewport (.reveal.is-visible) via IntersectionObserver.
