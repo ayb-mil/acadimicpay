@@ -101,7 +101,7 @@ const content = {
       h1Accent: "professionnelles",
       h1Post: "",
       toolsLine: "pptx · Canva · Google Slides · Prezi",
-      sub: "Soutenances, exposés, supports de cours. Livrées en .pptx et PDF, en arabe, français ou anglais.",
+      sub: "Soutenances, exposés, supports de cours. Livrées dans le format de votre choix. Pour toute question ou demande, n'hésitez pas à nous contacter.",
       cta: "Contacter sur WhatsApp",
       cta2: "Voir les tarifs",
       badge: "Mise en forme + rédaction + animations",
@@ -151,7 +151,6 @@ const content = {
         pack60: "Pack complet 60 diapositives (contenu rédigé + animations)",
       },
       rules: [
-        "Formats de livraison : .pptx et PDF.",
         "Langues disponibles : arabe, français, anglais.",
         "3 révisions de forme incluses après livraison.",
         "Par défaut, la rédaction du contenu n'est pas incluse : je mets en forme le contenu que vous fournissez, sauf si vous choisissez un pack complet.",
@@ -169,9 +168,8 @@ const content = {
     portfolio: {
       title: "Exemples de réalisations",
       sub: "Aperçus de présentations que j'ai réalisées.",
-      note: "Ces exemples sont mes projets personnels. J'ai réalisé bien d'autres présentations, mais je ne publie jamais le travail de mes clients : leur contenu reste confidentiel.",
       dragHint: "Faites glisser pour parcourir · touchez une diapositive pour l'agrandir",
-      allWorks: "Toutes les réalisations",
+      allWorks: "Titres de ces exemples",
       open: "Agrandir",
       close: "Fermer",
     },
@@ -182,7 +180,7 @@ const content = {
     },
     about: {
       title: "À propos",
-      text: "Étudiant en Master à l'ENS Meknès (Université Moulay Ismaïl). Je réalise moi-même chaque présentation, sans sous-traitance.",
+      text: "Designer professionnel et étudiant en Master (Université Moulay Ismaïl). Je crée pour vous une présentation impressionnante, exactement comme vous l'imaginez.",
       photoAlt: "Photo",
     },
     faq: {
@@ -220,7 +218,7 @@ const content = {
       h1Accent: "احترافية",
       h1Post: "",
       toolsLine: "pptx · Canva · Google Slides · Prezi",
-      sub: "مناقشات، عروض، ودعامات دروس. تُسلَّم بصيغة .pptx و PDF، بالعربية أو الفرنسية أو الإنجليزية.",
+      sub: "مناقشات، عروض، ودعامات دروس. تُسلَّم بالصيغة التي تريدها، ولأي استفسار أو طلب لا تتردد في التواصل معنا.",
       cta: "تواصل عبر واتساب",
       cta2: "الاطلاع على الأسعار",
       badge: "تنسيق + كتابة محتوى + حركات",
@@ -270,7 +268,6 @@ const content = {
         pack60: "باقة كاملة 60 شريحة (محتوى مكتوب + حركات)",
       },
       rules: [
-        "صيغ التسليم: .pptx و PDF.",
         "اللغات المتاحة: العربية، الفرنسية، الإنجليزية.",
         "ثلاث تعديلات على الشكل مُدرَجة بعد التسليم.",
         "كتابة المحتوى غير مُدرَجة افتراضياً: أقوم بتنسيق المحتوى الذي تقدّمه، إلا إذا اخترت باقة كاملة.",
@@ -288,9 +285,8 @@ const content = {
     portfolio: {
       title: "نماذج من الأعمال",
       sub: "لمحات من عروض تقديمية أنجزتُها.",
-      note: "هذه النماذج من مشاريعي الشخصية. أنجزتُ أعمالاً أخرى كثيرة، لكنني لا أنشر أبداً أعمال زبنائي: محتواها يبقى سرياً.",
       dragHint: "اسحب للتصفح · اضغط على أي شريحة لتكبيرها",
-      allWorks: "كل الأعمال",
+      allWorks: "عناوين هذه النماذج",
       open: "تكبير",
       close: "إغلاق",
     },
@@ -301,7 +297,7 @@ const content = {
     },
     about: {
       title: "من أنا",
-      text: "طالب في سلك الماستر بالمدرسة العليا للأساتذة بمكناس (جامعة مولاي إسماعيل). أنجز كل عرض تقديمي بنفسي، دون وساطة.",
+      text: "مصمم احترافي وطالب في سلك الماستر (جامعة مولاي إسماعيل). سأصنع لك عرضاً تقديمياً مبهراً كما تتخيله.",
       photoAlt: "صورة",
     },
     faq: {
@@ -339,7 +335,7 @@ const content = {
       h1Accent: "design",
       h1Post: "",
       toolsLine: "pptx · Canva · Google Slides · Prezi",
-      sub: "Defences, class presentations, course decks. Delivered as .pptx and PDF, in Arabic, French or English.",
+      sub: "Defences, class presentations, course decks. Delivered in the format you want. For any question or request, feel free to contact us.",
       cta: "Contact on WhatsApp",
       cta2: "See prices",
       badge: "Formatting + writing + animations",
@@ -389,7 +385,6 @@ const content = {
         pack60: "Full pack 60 slides (written content + animations)",
       },
       rules: [
-        "Delivery formats: .pptx and PDF.",
         "Available languages: Arabic, French, English.",
         "3 formatting revisions included after delivery.",
         "By default, content writing is not included: I format the content you provide, unless you choose a full pack.",
@@ -407,9 +402,8 @@ const content = {
     portfolio: {
       title: "Examples of work",
       sub: "Previews of presentations I have made.",
-      note: "These examples are my personal projects. I have produced many more presentations, but I never publish my clients' work: their content stays confidential.",
       dragHint: "Drag to browse · tap a slide to enlarge it",
-      allWorks: "All works",
+      allWorks: "Titles of these examples",
       open: "Enlarge",
       close: "Close",
     },
@@ -420,7 +414,7 @@ const content = {
     },
     about: {
       title: "About",
-      text: "Master's student at ENS Meknès (Moulay Ismaïl University). I produce every presentation myself, with no outsourcing.",
+      text: "Professional designer and Master's student (Moulay Ismaïl University). I will create a stunning presentation for you, exactly as you imagine it.",
       photoAlt: "Photo",
     },
     faq: {
@@ -984,6 +978,55 @@ export default function PresentationsPage() {
             </Reveal>
           </section>
 
+          {/* ─────────── Portfolio : galerie 3D (WebGL) ─────────── */}
+          <section className="relative mt-16 overflow-hidden bg-[#0A1B3D] py-14">
+            <div className="mx-auto max-w-6xl px-4 sm:px-6">
+              <Reveal>
+                <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                  <span className="grad-text">{t.portfolio.title}</span>
+                </h2>
+                <p className="mt-2 text-sm text-white/65">{t.portfolio.sub}</p>
+              </Reveal>
+            </div>
+            <div className="relative mt-6 h-[420px] sm:h-[520px]">
+              <PortfolioCarousel3D onSelect={setLightbox} />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-[#0A1B3D] to-transparent rtl:bg-gradient-to-l" />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-[#0A1B3D] to-transparent rtl:bg-gradient-to-r" />
+            </div>
+            <p className="mt-2 text-center text-xs font-medium text-white/50">{t.portfolio.dragHint}</p>
+          </section>
+
+          <section className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
+            <Reveal>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-[#5B6472]">{t.portfolio.allWorks}</h3>
+            </Reveal>
+            <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+              {PORTFOLIO.map((item, i) => (
+                <Reveal key={item.file} delay={(i % 3) * 0.08}>
+                  <li>
+                    <TiltCard strength={6} className="block">
+                      <button
+                        type="button"
+                        onClick={() => setLightbox(i)}
+                        aria-label={`${t.portfolio.open} — ${item.caption}`}
+                        className="block w-full overflow-hidden rounded-xl border border-[#E6E9F2] bg-white shadow-sm transition hover:border-[#2DD4CF] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2DD4CF]"
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={`/portfolio/${item.file}`}
+                          alt={item.caption}
+                          loading="lazy"
+                          className="aspect-video w-full bg-white object-contain"
+                        />
+                      </button>
+                    </TiltCard>
+                    <p className="mt-1.5 text-xs leading-snug text-[#5B6472]">{item.caption}</p>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </section>
+
           {/* ─────────── Tarifs ─────────── */}
           <section id="tarifs" className="mx-auto max-w-6xl scroll-mt-20 px-4 pt-14 sm:px-6">
             <Reveal>
@@ -1061,62 +1104,6 @@ export default function PresentationsPage() {
                 </Reveal>
               ))}
             </div>
-          </section>
-
-          {/* ─────────── Portfolio : galerie 3D (WebGL) ─────────── */}
-          <section className="relative mt-16 overflow-hidden bg-[#0A1B3D] py-14">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6">
-              <Reveal>
-                <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                  <span className="grad-text">{t.portfolio.title}</span>
-                </h2>
-                <p className="mt-2 text-sm text-white/65">{t.portfolio.sub}</p>
-              </Reveal>
-            </div>
-            <div className="relative mt-6 h-[420px] sm:h-[520px]">
-              <PortfolioCarousel3D onSelect={setLightbox} />
-              <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-[#0A1B3D] to-transparent rtl:bg-gradient-to-l" />
-              <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-[#0A1B3D] to-transparent rtl:bg-gradient-to-r" />
-            </div>
-            <p className="mt-2 text-center text-xs font-medium text-white/50">{t.portfolio.dragHint}</p>
-          </section>
-
-          <section className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
-            <Reveal>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-[#5B6472]">{t.portfolio.allWorks}</h3>
-            </Reveal>
-            <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-              {PORTFOLIO.map((item, i) => (
-                <Reveal key={item.file} delay={(i % 3) * 0.08}>
-                  <li>
-                    <TiltCard strength={6} className="block">
-                      <button
-                        type="button"
-                        onClick={() => setLightbox(i)}
-                        aria-label={`${t.portfolio.open} — ${item.caption}`}
-                        className="block w-full overflow-hidden rounded-xl border border-[#E6E9F2] bg-white shadow-sm transition hover:border-[#2DD4CF] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2DD4CF]"
-                      >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={`/portfolio/${item.file}`}
-                          alt={item.caption}
-                          loading="lazy"
-                          className="aspect-video w-full bg-white object-contain"
-                        />
-                      </button>
-                    </TiltCard>
-                    <p className="mt-1.5 text-xs leading-snug text-[#5B6472]">{item.caption}</p>
-                  </li>
-                </Reveal>
-              ))}
-            </ul>
-            {/* Confidentialité : beaucoup d'autres travaux, jamais ceux des clients. */}
-            <Reveal>
-              <p className="mt-6 flex max-w-2xl gap-2.5 rounded-xl border border-[#E6E9F2] bg-white p-4 text-sm leading-relaxed text-[#5B6472]">
-                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#2DD4CF]" />
-                <span>{t.portfolio.note}</span>
-              </p>
-            </Reveal>
           </section>
 
           {/* ─────────── Avis ─────────── */}
