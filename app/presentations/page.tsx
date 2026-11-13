@@ -2,15 +2,39 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
+import dynamic from "next/dynamic";
 import {
   AnimatePresence,
   MotionConfig,
   motion,
   useMotionValue,
   useReducedMotion,
+  useScroll,
   useSpring,
   useTransform,
 } from "framer-motion";
+
+/*
+ * Scènes WebGL (Three.js / React Three Fiber) : chargées côté client
+ * uniquement (WebGL n'existe pas côté serveur), avec un placeholder lumineux
+ * pendant le téléchargement du bundle 3D.
+ */
+function SceneLoader() {
+  return (
+    <div className="flex h-full w-full items-center justify-center">
+      <div className="h-24 w-24 animate-pulse rounded-full bg-gradient-to-br from-[#2DD4CF]/40 to-[#8B7CF6]/40 blur-xl" />
+    </div>
+  );
+}
+const HeroScene = dynamic(() => import("./_three/HeroScene"), { ssr: false, loading: SceneLoader });
+const PortfolioCarousel3D = dynamic(() => import("./_three/PortfolioCarousel3D"), {
+  ssr: false,
+  loading: SceneLoader,
+});
+const ConfiguratorStack3D = dynamic(() => import("./_three/ConfiguratorStack3D"), {
+  ssr: false,
+  loading: SceneLoader,
+});
 
 /* ══════════════════════════════════════════════════════════════════════════
    CONSTANTES À ÉDITER — tout est ici, rien de dispersé dans le JSX.
@@ -146,6 +170,8 @@ const content = {
       title: "Exemples de réalisations",
       sub: "Aperçus de présentations que j'ai réalisées.",
       note: "Ces exemples sont mes projets personnels. J'ai réalisé bien d'autres présentations, mais je ne publie jamais le travail de mes clients : leur contenu reste confidentiel.",
+      dragHint: "Faites glisser pour parcourir · touchez une diapositive pour l'agrandir",
+      allWorks: "Toutes les réalisations",
       open: "Agrandir",
       close: "Fermer",
     },
@@ -263,6 +289,8 @@ const content = {
       title: "نماذج من الأعمال",
       sub: "لمحات من عروض تقديمية أنجزتُها.",
       note: "هذه النماذج من مشاريعي الشخصية. أنجزتُ أعمالاً أخرى كثيرة، لكنني لا أنشر أبداً أعمال زبنائي: محتواها يبقى سرياً.",
+      dragHint: "اسحب للتصفح · اضغط على أي شريحة لتكبيرها",
+      allWorks: "كل الأعمال",
       open: "تكبير",
       close: "إغلاق",
     },
@@ -380,6 +408,8 @@ const content = {
       title: "Examples of work",
       sub: "Previews of presentations I have made.",
       note: "These examples are my personal projects. I have produced many more presentations, but I never publish my clients' work: their content stays confidential.",
+      dragHint: "Drag to browse · tap a slide to enlarge it",
+      allWorks: "All works",
       open: "Enlarge",
       close: "Close",
     },
@@ -542,6 +572,10 @@ export default function PresentationsPage() {
   const pack = OFFERS.packs.find((p) => p.slides === slides);
   const isPack = Boolean(pack);
 
+  /* Hero 3D : la scène suit la souris sur toute la section et réagit au scroll. */
+  const heroRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+
   /* Total + délai, recalculés à chaque changement. */
   const { total, days } = useMemo(() => {
     if (pack) return { total: pack.price, days: pack.days };
@@ -658,101 +692,106 @@ export default function PresentationsPage() {
         </header>
 
         <main className="pb-28 sm:pb-16">
-          {/* ─────────── Hero (bande sombre premium) ─────────── */}
-          <section className="relative overflow-hidden bg-[#0A1B3D]">
-            {/* Décor ambiant : dégradé + blobs flous + grille de points. */}
+          {/* ─────────── Hero 3D plein écran (Three.js / WebGL) ─────────── */}
+          <section
+            ref={heroRef}
+            className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-[#0A1B3D] lg:min-h-[92vh] lg:justify-center"
+          >
+            {/* Scène WebGL : laptop procédural + vraies réalisations en orbite. */}
+            <div className="absolute inset-0 -z-10">
+              <HeroScene rtl={isAr} scroll={scrollYProgress} eventSource={heroRef} />
+            </div>
+            {/* Voiles de lisibilité : depuis le haut sur mobile, depuis le côté du texte sur desktop. */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle at 20% 20%, rgba(45,212,207,0.12), transparent 45%), radial-gradient(circle at 85% 75%, rgba(139,124,246,0.14), transparent 45%)",
-              }}
+              className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#0A1B3D] via-[#0A1B3D]/50 to-transparent lg:hidden"
             />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 opacity-[0.07]"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(255,255,255,0.9) 1px, transparent 1px)",
-                backgroundSize: "22px 22px",
-              }}
+              className="pointer-events-none absolute inset-0 -z-10 hidden bg-gradient-to-r from-[#0A1B3D] via-[#0A1B3D]/60 to-transparent rtl:bg-gradient-to-l lg:block"
             />
-            <Glow className="ambient-blob -top-20 start-[8%] h-64 w-64 bg-[#2DD4CF]/30" />
-            <Glow className="ambient-blob-slow top-1/2 end-[6%] h-72 w-72 bg-[#8B7CF6]/25" />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-28 bg-gradient-to-t from-[#0A1B3D] to-transparent"
+            />
 
-            <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-14 sm:px-6 sm:pt-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pb-24 lg:pt-24">
-              {/* Colonne texte */}
-              <div>
+            <div className="relative mx-auto w-full max-w-6xl px-4 pb-10 pt-12 sm:px-6 sm:pt-16 lg:py-0">
+              <div className="max-w-xl">
                 <Reveal>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white/80">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#2DD4CF]" aria-hidden="true" />
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white/80 backdrop-blur">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#2DD4CF]" aria-hidden="true" />
                     {t.hero.eyebrow}
                   </span>
                 </Reveal>
 
                 <Reveal delay={0.08}>
-                  <h1 className="mt-5 text-3xl font-bold leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-[2.6rem]">
+                  <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
                     {t.hero.h1Pre} <span className="grad-text">{t.hero.h1Accent}</span> {t.hero.h1Post}
                   </h1>
                 </Reveal>
 
                 <Reveal delay={0.14}>
-                  <p className="mt-2 text-sm font-medium tracking-wide text-[#2DD4CF]/90">{t.hero.toolsLine}</p>
-                  <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">{t.hero.sub}</p>
+                  <ul className="mt-5 flex flex-wrap gap-2" dir="ltr">
+                    {t.hero.toolsLine.split(" · ").map((tool) => (
+                      <li
+                        key={tool}
+                        className="rounded-full border border-[#2DD4CF]/30 bg-[#2DD4CF]/10 px-3 py-1 text-xs font-semibold text-[#7FF0EC] backdrop-blur"
+                      >
+                        {tool}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-5 max-w-lg text-base leading-relaxed text-white/75 sm:text-lg">{t.hero.sub}</p>
                 </Reveal>
 
                 <Reveal delay={0.2}>
-                  <div className="mt-7 flex flex-wrap gap-3">
+                  <div className="mt-8 flex flex-wrap gap-3">
                     <motion.a
                       whileTap={{ scale: 0.96 }}
                       whileHover={{ y: -2 }}
                       href={heroHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={btnPrimary}
+                      className={`${btnPrimary} px-6 py-3.5 text-base`}
                     >
+                      <WhatsAppIcon className="h-5 w-5" />
                       {t.hero.cta}
                     </motion.a>
                     <motion.a
                       whileTap={{ scale: 0.96 }}
                       whileHover={{ y: -2 }}
                       href="#tarifs"
-                      className={btnGhostDark}
+                      className={`${btnGhostDark} px-6 py-3.5 text-base`}
                     >
                       {t.hero.cta2}
                     </motion.a>
                   </div>
                 </Reveal>
               </div>
-
-              {/* Colonne mockup 3D (desktop) */}
-              <Reveal delay={0.26} className="hidden lg:block">
-                <div className="relative mx-auto w-full max-w-md" style={{ perspective: 1000 }}>
-                  <div
-                    aria-hidden="true"
-                    className="ambient-blob absolute inset-0 -z-10 scale-90 rounded-[2rem] bg-gradient-to-br from-[#2DD4CF]/25 to-[#8B7CF6]/25 blur-2xl"
-                  />
-                  <TiltCard className="rounded-[1.75rem] border border-white/10 bg-white/5 p-4 shadow-2xl backdrop-blur-sm">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="/presentations/hero-devices.webp"
-                      alt=""
-                      aria-hidden="true"
-                      className="w-full select-none drop-shadow-[0_30px_40px_rgba(0,0,0,0.35)]"
-                    />
-                  </TiltCard>
-                  <motion.span
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                    className="ambient-blob absolute -bottom-3 start-4 rounded-full border border-white/15 bg-[#0A1B3D]/90 px-3 py-1.5 text-[11px] font-semibold text-white shadow-lg backdrop-blur"
-                  >
-                    {t.hero.badge}
-                  </motion.span>
-                </div>
-              </Reveal>
             </div>
+
+            {/* Badge flottant au-dessus de la scène (desktop). */}
+            <motion.span
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.6, duration: 0.6 }}
+              className="pointer-events-none absolute bottom-28 end-10 hidden rounded-2xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white shadow-2xl backdrop-blur-md lg:block"
+            >
+              <span className="me-2 inline-block h-2 w-2 rounded-full bg-[#2DD4CF]" aria-hidden="true" />
+              {t.hero.badge}
+            </motion.span>
+
+            {/* Indicateur de scroll. */}
+            <motion.div
+              aria-hidden="true"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              className="pointer-events-none absolute bottom-5 left-1/2 hidden -translate-x-1/2 text-white/50 lg:block"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6">
+                <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </motion.div>
           </section>
 
           {/* ─────────── Audience ─────────── */}
@@ -822,7 +861,7 @@ export default function PresentationsPage() {
                   <p className="mt-1 text-sm text-[#5B6472]">{t.config.sub}</p>
                 </div>
 
-                <div className="grid gap-6 p-6 md:grid-cols-[1fr_auto] md:items-end">
+                <div className="grid gap-6 p-6 md:grid-cols-[1fr_auto] md:items-start">
                   <div className="space-y-6">
                     {/* Nombre de diapositives */}
                     <div>
@@ -893,8 +932,20 @@ export default function PresentationsPage() {
                     </div>
                   </div>
 
-                  {/* Total live */}
-                  <TiltCard strength={4} className="md:w-64">
+                  {/* Aperçu 3D de la commande + total live */}
+                  <div className="flex flex-col gap-3 md:w-72">
+                  <div className="relative h-52 overflow-hidden rounded-xl bg-gradient-to-b from-[#0A1B3D] to-[#1C3A70] shadow-inner sm:h-56">
+                    <ConfiguratorStack3D
+                      slides={slides}
+                      content={isPack || addContent}
+                      animations={isPack || addAnimations}
+                      pack={isPack}
+                    />
+                    <span className="pointer-events-none absolute start-3 top-3 rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur">
+                      {selectionLabel}
+                    </span>
+                  </div>
+                  <TiltCard strength={4}>
                     <div className="rounded-xl border border-[#E6E9F2] bg-gradient-to-b from-[#F7F8FC] to-white p-5 shadow-sm">
                       <p className="text-xs font-semibold uppercase tracking-wider text-[#5B6472]">
                         {t.config.total}
@@ -927,6 +978,7 @@ export default function PresentationsPage() {
                       </motion.a>
                     </div>
                   </TiltCard>
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -1011,13 +1063,29 @@ export default function PresentationsPage() {
             </div>
           </section>
 
-          {/* ─────────── Portfolio ─────────── */}
-          <section className="mx-auto max-w-6xl px-4 pt-14 sm:px-6">
+          {/* ─────────── Portfolio : galerie 3D (WebGL) ─────────── */}
+          <section className="relative mt-16 overflow-hidden bg-[#0A1B3D] py-14">
+            <div className="mx-auto max-w-6xl px-4 sm:px-6">
+              <Reveal>
+                <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                  <span className="grad-text">{t.portfolio.title}</span>
+                </h2>
+                <p className="mt-2 text-sm text-white/65">{t.portfolio.sub}</p>
+              </Reveal>
+            </div>
+            <div className="relative mt-6 h-[420px] sm:h-[520px]">
+              <PortfolioCarousel3D onSelect={setLightbox} />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 start-0 w-16 bg-gradient-to-r from-[#0A1B3D] to-transparent rtl:bg-gradient-to-l" />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 end-0 w-16 bg-gradient-to-l from-[#0A1B3D] to-transparent rtl:bg-gradient-to-r" />
+            </div>
+            <p className="mt-2 text-center text-xs font-medium text-white/50">{t.portfolio.dragHint}</p>
+          </section>
+
+          <section className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
             <Reveal>
-              <h2 className="text-xl font-bold">{t.portfolio.title}</h2>
-              <p className="mt-1 text-sm text-[#5B6472]">{t.portfolio.sub}</p>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-[#5B6472]">{t.portfolio.allWorks}</h3>
             </Reveal>
-            <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
               {PORTFOLIO.map((item, i) => (
                 <Reveal key={item.file} delay={(i % 3) * 0.08}>
                   <li>
