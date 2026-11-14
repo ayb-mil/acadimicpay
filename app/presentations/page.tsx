@@ -40,8 +40,8 @@ const ConfiguratorStack3D = dynamic(() => import("./_three/ConfiguratorStack3D")
    CONSTANTES À ÉDITER — tout est ici, rien de dispersé dans le JSX.
    ══════════════════════════════════════════════════════════════════════════ */
 
-/** Numéro WhatsApp au format international sans « + » (= +212 6 09 93 32 18). */
-const WHATSAPP = "212609933218";
+/** Numéro WhatsApp au format international sans « + » (= +212 6 09 64 88 11). */
+const WHATSAPP = "212609648811";
 
 /** Devise affichée partout. */
 const CURRENCY = "MAD";
@@ -162,7 +162,7 @@ const content = {
       items: [
         { t: "Vous me contactez sur WhatsApp", d: "Envoyez-moi votre sujet ou votre document." },
         { t: "On confirme", d: "Nombre de diapositives, style et délai. Vous réglez ensuite par virement ou CashPlus." },
-        { t: "Vous recevez votre présentation", d: "En .pptx et PDF, prête à présenter." },
+        { t: "Vous recevez votre présentation", d: "Prête à présenter." },
       ],
     },
     portfolio: {
@@ -279,7 +279,7 @@ const content = {
       items: [
         { t: "تتواصل معي عبر واتساب", d: "أرسل لي موضوعك أو ملفك." },
         { t: "نتفق على التفاصيل", d: "عدد الشرائح والأسلوب ومدة التسليم، ثم تؤدي عبر تحويل بنكي أو CashPlus." },
-        { t: "تستلم عرضك التقديمي", d: "بصيغة .pptx و PDF، جاهزاً للعرض." },
+        { t: "تستلم عرضك التقديمي", d: "جاهزاً للعرض." },
       ],
     },
     portfolio: {
@@ -396,7 +396,7 @@ const content = {
       items: [
         { t: "You contact me on WhatsApp", d: "Send me your topic or your document." },
         { t: "We confirm", d: "Number of slides, style and deadline. You then pay by bank transfer or CashPlus." },
-        { t: "You receive your presentation", d: "As .pptx and PDF, ready to present." },
+        { t: "You receive your presentation", d: "Ready to present." },
       ],
     },
     portfolio: {

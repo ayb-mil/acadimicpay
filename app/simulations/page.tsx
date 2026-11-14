@@ -7,8 +7,8 @@ import type { CSSProperties } from "react";
    CONSTANTES À ÉDITER — tout est ici, rien de dispersé dans le JSX.
    ══════════════════════════════════════════════════════════════════════════ */
 
-/** Numéro WhatsApp au format international sans « + » (= +212 6 09 93 32 18). */
-const WHATSAPP = "212609933218";
+/** Numéro WhatsApp au format international sans « + » (= +212 6 09 64 88 11). */
+const WHATSAPP = "212609648811";
 
 /** Bloc « À propos ». */
 const ABOUT = {

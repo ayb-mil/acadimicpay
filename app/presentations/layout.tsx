@@ -25,9 +25,9 @@ const arabic = IBM_Plex_Sans_Arabic({
 export const metadata: Metadata = {
   // `absolute` : neutralise le template « %s — AcadPay » du layout racine,
   // pour que cette offre reste visuellement et éditorialement autonome.
-  title: { absolute: "Présentations soignées — .pptx et PDF" },
+  title: { absolute: "Présentations soignées — dans le format de votre choix" },
   description:
-    "Mise en forme et rédaction de présentations pour soutenances, exposés et supports de cours. Livrées en .pptx et PDF, en arabe, français ou anglais.",
+    "Mise en forme et rédaction de présentations pour soutenances, exposés et supports de cours. Livrées dans le format de votre choix, en arabe, français ou anglais.",
   // Indexable et présente dans le sitemap, mais jamais liée depuis la
   // navigation AcadPay : les deux positionnements restent séparés.
   robots: { index: true, follow: true },

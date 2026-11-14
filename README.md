@@ -104,7 +104,7 @@ Certbot n'est nécessaire**, et le **HTTPS/SSL est fourni et renouvelé automati
    | `RESEND_API_KEY` | votre clé Resend |
    | `CONTACT_EMAIL_FROM` | ex : `AcadPay <contact@acadpay.me>` (domaine vérifié sur Resend) |
    | `CONTACT_EMAIL_TO` | `ayoubelmqarta6@gmail.com` |
-   | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `212609933218` |
+   | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `212609648811` |
    | `NEXT_PUBLIC_SITE_URL` | `https://acadpay.me` |
 
 5. **Deploy**. Chaque push sur `main` redéploie automatiquement (previews sur les autres branches).
