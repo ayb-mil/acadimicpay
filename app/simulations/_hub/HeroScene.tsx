@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, type MutableRefObject } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
+import { useGlowCurve, useGlowTexture } from "../_three/glowCurve";
 
 /* ══════════════════════════════════════════════════════════════════════════
    Scène d'accroche : onde électromagnétique plane progressive.
@@ -53,19 +54,6 @@ function field(x: number, t: number) {
   return AMP * envelope(x) * Math.sin(K * x - OMEGA * t);
 }
 
-function makeGlowTexture() {
-  const c = document.createElement("canvas");
-  c.width = c.height = 64;
-  const g = c.getContext("2d")!;
-  const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
-  grad.addColorStop(0, "rgba(255,255,255,1)");
-  grad.addColorStop(0.25, "rgba(255,255,255,0.5)");
-  grad.addColorStop(1, "rgba(255,255,255,0)");
-  g.fillStyle = grad;
-  g.fillRect(0, 0, 64, 64);
-  return new THREE.CanvasTexture(c);
-}
-
 type Clock = MutableRefObject<number>;
 
 function Ticker({ clock, animate }: { clock: Clock; animate: boolean }) {
@@ -75,56 +63,11 @@ function Ticker({ clock, animate }: { clock: Clock; animate: boolean }) {
   return null;
 }
 
-/* Courbe lumineuse : un trait fin net + un halo de points additifs, les deux
-   partageant le même buffer de positions (mis à jour en place, sans allocation). */
-function useGlowCurve(color: string, glowTex: THREE.Texture) {
-  const curve = useMemo(() => {
-    const attr = new THREE.BufferAttribute(new Float32Array(CURVE_PTS * 3), 3);
-    attr.setUsage(THREE.DynamicDrawUsage);
-    const lineGeo = new THREE.BufferGeometry();
-    lineGeo.setAttribute("position", attr);
-    const line = new THREE.Line(
-      lineGeo,
-      new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.95, toneMapped: false })
-    );
-    const glowGeo = new THREE.BufferGeometry();
-    glowGeo.setAttribute("position", attr);
-    const glow = new THREE.Points(
-      glowGeo,
-      new THREE.PointsMaterial({
-        color,
-        size: 0.34,
-        map: glowTex,
-        transparent: true,
-        opacity: 0.5,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-        toneMapped: false,
-      })
-    );
-    line.frustumCulled = false;
-    glow.frustumCulled = false;
-    return { attr, line, glow };
-  }, [color, glowTex]);
-
-  useEffect(
-    () => () => {
-      curve.line.geometry.dispose();
-      (curve.line.material as THREE.Material).dispose();
-      curve.glow.geometry.dispose();
-      (curve.glow.material as THREE.Material).dispose();
-    },
-    [curve]
-  );
-  return curve;
-}
-
 function Wave({ clock }: { clock: Clock }) {
-  const glowTex = useMemo(makeGlowTexture, []);
-  useEffect(() => () => glowTex.dispose(), [glowTex]);
+  const glowTex = useGlowTexture();
 
-  const e = useGlowCurve(TEAL, glowTex);
-  const b = useGlowCurve(VIOLET, glowTex);
+  const e = useGlowCurve(TEAL, glowTex, CURVE_PTS);
+  const b = useGlowCurve(VIOLET, glowTex, CURVE_PTS);
 
   const eShafts = useRef<THREE.InstancedMesh>(null);
   const bShafts = useRef<THREE.InstancedMesh>(null);

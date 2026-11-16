@@ -17,7 +17,8 @@ export type PreviewKind =
   | "rlc"
   | "decay"
   | "refraction"
-  | "daniell";
+  | "daniell"
+  | "emwave";
 
 const C = {
   bg: "#081124",
@@ -145,9 +146,10 @@ function seeded(i: number) {
   return s - Math.floor(s);
 }
 
-/* ---------- Les 8 aperçus ---------- */
+/* ---------- Les aperçus ---------- */
 
 const DRAW: Record<PreviewKind, Draw> = {
+  emwave: drawEmWave,
   projectile(ctx, w, h, t) {
     gridBg(ctx, w, h);
     const ground = h * 0.84;
@@ -422,6 +424,65 @@ const DRAW: Record<PreviewKind, Draw> = {
     ctx.textAlign = "start";
   },
 };
+
+/* Onde EM vue en perspective cavalière : E vertical, B projeté en oblique ;
+   à droite de l’interface (indice 1,5) la longueur d’onde est divisée par 1,5. */
+function drawEmWave(ctx: CanvasRenderingContext2D, w: number, h: number, t: number) {
+  gridBg(ctx, w, h);
+  const mid = h * 0.52;
+  const ix = w * 0.52;
+  const n = 1.5;
+  const A = h * 0.26;
+  const L0 = w * 0.24;
+  const k0 = (2 * Math.PI) / L0;
+  const omega = k0 * w * 0.11;
+  ctx.fillStyle = "rgba(34, 228, 217, 0.07)";
+  ctx.fillRect(ix, 0, w - ix, h);
+  dashed(ctx, ix, h * 0.08, ix, h * 0.92, "rgba(34, 228, 217, 0.45)");
+  ctx.strokeStyle = C.axis;
+  ctx.lineWidth = 1.2;
+  line(ctx, w * 0.04, mid, w * 0.96, mid);
+  const field = (x: number) => {
+    const fade = Math.min(1, (x - w * 0.04) / (w * 0.06), (w * 0.96 - x) / (w * 0.06));
+    const ph = (x < ix ? k0 : n * k0) * (x - ix) - omega * t;
+    return A * Math.max(0, fade) * Math.sin(ph);
+  };
+  const bx = (x: number, v: number) => x + 0.42 * v;
+  const by = (v: number) => mid - 0.3 * v;
+  for (let x = w * 0.05; x < w * 0.95; x += w / 46) {
+    const v = field(x);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(155, 123, 255, 0.45)";
+    line(ctx, x, mid, bx(x, v * 0.8), by(v * 0.8));
+    ctx.strokeStyle = "rgba(34, 228, 217, 0.5)";
+    line(ctx, x, mid, x, mid - v);
+  }
+  const curve = (color: string, px: (x: number, v: number) => number, py: (v: number) => number, k: number) => {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.2;
+    glow(ctx, color, 12);
+    ctx.beginPath();
+    for (let i = 0; i <= 200; i++) {
+      const x = w * 0.04 + (w * 0.92 * i) / 200;
+      const v = field(x) * k;
+      if (i === 0) ctx.moveTo(px(x, v), py(v));
+      else ctx.lineTo(px(x, v), py(v));
+    }
+    ctx.stroke();
+    noGlow(ctx);
+  };
+  curve(C.violet, bx, by, 0.8);
+  curve(C.teal, (x) => x, (v) => mid - v, 1);
+  ctx.font = "700 12px ui-monospace, Menlo, Consolas, monospace";
+  ctx.fillStyle = C.teal;
+  ctx.fillText("E", w * 0.05, mid - A - 4);
+  ctx.fillStyle = C.violet;
+  ctx.fillText("B", w * 0.05 + 0.42 * A * 0.8 + 6, mid - 0.3 * A * 0.8 + 4);
+  ctx.fillStyle = C.muted;
+  ctx.font = "600 10px ui-monospace, Menlo, Consolas, monospace";
+  ctx.fillText("vide", w * 0.06, h - 10);
+  ctx.fillText("n = 1,5", ix + 8, h - 10);
+}
 
 export default function SimPreview({ kind, animate }: { kind: PreviewKind; animate: boolean }) {
   const ref = useRef<HTMLCanvasElement | null>(null);

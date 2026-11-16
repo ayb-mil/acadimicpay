@@ -41,6 +41,7 @@ const SIMS: { href: string; kind: PreviewKind; domain: Domain; eq: string }[] = 
   { href: "/simulations/decroissance-radioactive", kind: "decay", domain: "nuclear", eq: "N(t) = N₀·e^(−λt)" },
   { href: "/simulations/refraction-lumiere", kind: "refraction", domain: "optics", eq: "n₁·sin i₁ = n₂·sin i₂" },
   { href: "/simulations/pile-daniell", kind: "daniell", domain: "chemistry", eq: "E = E° − 0,03·log Q" },
+  { href: "/simulations/onde-electromagnetique", kind: "emwave", domain: "optics", eq: "v = c/n  ·  λ = λ₀/n" },
 ];
 
 const DOMAIN_COLOR: Record<Domain, string> = {
@@ -75,14 +76,14 @@ const content = {
       sub: "Simulations HTML sur mesure, adaptées à votre chapitre du programme marocain. Utilisables en classe sans installation, sur ordinateur ou vidéoprojecteur.",
       cta: "Contacter sur WhatsApp",
       cta2: "Voir les simulations",
-      stats: ["8 simulations en ligne", "Programme marocain", "Hors-ligne, sans installation"],
+      stats: ["9 simulations en ligne", "Programme marocain", "Hors-ligne, sans installation"],
       scroll: "Défiler",
     },
     domains: { mechanics: "Mécanique", electricity: "Électricité", chemistry: "Chimie", nuclear: "Nucléaire", optics: "Optique" },
     demos: {
       eyebrow: "Laboratoire en ligne",
       title: "Simulations déjà en ligne",
-      sub: "Huit exemples fonctionnels, à tester dès maintenant.",
+      sub: "Neuf exemples fonctionnels, à tester dès maintenant.",
       live: "Aperçu animé",
       cta: "Ouvrir",
       items: [
@@ -94,6 +95,7 @@ const content = {
         { title: "Décroissance radioactive", href: "/simulations/decroissance-radioactive" },
         { title: "Réfraction de la lumière", href: "/simulations/refraction-lumiere" },
         { title: "Pile Daniell", href: "/simulations/pile-daniell" },
+        { title: "Onde électromagnétique (lumière)", href: "/simulations/onde-electromagnetique" },
       ],
     },
     service: {
@@ -176,14 +178,14 @@ const content = {
       sub: "محاكاة بصيغة HTML مصممة خصيصاً حسب درسكم في المنهاج المغربي. تُستعمل في القسم دون أي تثبيت، على حاسوب أو عبر جهاز العرض.",
       cta: "تواصل عبر واتساب",
       cta2: "شاهد المحاكاة",
-      stats: ["8 محاكاة متوفرة", "المنهاج المغربي", "دون إنترنت ولا تثبيت"],
+      stats: ["9 محاكاة متوفرة", "المنهاج المغربي", "دون إنترنت ولا تثبيت"],
       scroll: "مرّر",
     },
     domains: { mechanics: "الميكانيك", electricity: "الكهرباء", chemistry: "الكيمياء", nuclear: "الفيزياء النووية", optics: "البصريات" },
     demos: {
       eyebrow: "مختبر على الإنترنت",
       title: "محاكاة متوفرة الآن",
-      sub: "ثماني أمثلة تشتغل فعلياً، جرّبها الآن.",
+      sub: "تسعة أمثلة تشتغل فعلياً، جرّبها الآن.",
       live: "معاينة حية",
       cta: "فتح",
       items: [
@@ -195,6 +197,7 @@ const content = {
         { title: "التناقص الإشعاعي", href: "/simulations/decroissance-radioactive" },
         { title: "انكسار الضوء", href: "/simulations/refraction-lumiere" },
         { title: "عمود دانيال", href: "/simulations/pile-daniell" },
+        { title: "الموجة الكهرمغنطيسية (الضوء)", href: "/simulations/onde-electromagnetique" },
       ],
     },
     service: {
@@ -277,14 +280,14 @@ const content = {
       sub: "Custom HTML simulations matched to your chapter in the Moroccan curriculum. Usable in class with no installation, on a computer or projector.",
       cta: "Contact on WhatsApp",
       cta2: "See the simulations",
-      stats: ["8 simulations online", "Moroccan curriculum", "Offline, no install"],
+      stats: ["9 simulations online", "Moroccan curriculum", "Offline, no install"],
       scroll: "Scroll",
     },
     domains: { mechanics: "Mechanics", electricity: "Electricity", chemistry: "Chemistry", nuclear: "Nuclear", optics: "Optics" },
     demos: {
       eyebrow: "Online lab",
       title: "Simulations already online",
-      sub: "Eight working examples, ready to try now.",
+      sub: "Nine working examples, ready to try now.",
       live: "Live preview",
       cta: "Open",
       items: [
@@ -296,6 +299,7 @@ const content = {
         { title: "Radioactive decay", href: "/simulations/decroissance-radioactive" },
         { title: "Refraction of light", href: "/simulations/refraction-lumiere" },
         { title: "Daniell cell", href: "/simulations/pile-daniell" },
+        { title: "Electromagnetic wave (light)", href: "/simulations/onde-electromagnetique" },
       ],
     },
     service: {
@@ -674,14 +678,14 @@ export default function SimulationsPage() {
           {/* ─────────── Galerie des simulations ─────────── */}
           <section id="simulations" className="relative mx-auto max-w-7xl scroll-mt-24 px-4 pt-16 sm:px-6 sm:pt-24">
             <SectionHead eyebrow={t.demos.eyebrow} title={t.demos.title} sub={t.demos.sub} />
-            <ul className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {t.demos.items.map((item, i) => {
                 const meta = SIMS.find((s) => s.href === item.href);
                 if (!meta) return null;
                 const color = DOMAIN_COLOR[meta.domain];
                 return (
                   <li key={item.href}>
-                    <Reveal delay={(i % 4) * 0.06} className="h-full">
+                    <Reveal delay={(i % 3) * 0.06} className="h-full">
                       <TiltCard className="group relative h-full rounded-3xl p-px transition-shadow duration-300 hover:shadow-[0_0_50px_-12px_rgba(34,228,217,0.55)]">
                         <span aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-3xl bg-white/[0.09]" />
                         <span
