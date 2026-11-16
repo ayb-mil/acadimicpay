@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { SIM_CLASSES, SIM_COLORS, simThemeVars } from "../_theme";
+import { SIM_CLASSES, SIM_COLORS, hexToRgb, simThemeVars } from "../_theme";
 
 /* ══════════════════════════════════════════════════════════════════════════
    Simulation — Décroissance radioactive, approche Monte-Carlo.
@@ -110,8 +110,8 @@ export default function DecroissanceRadioactiveSimulation() {
     const spacingY = DOTS_H / Math.max(rows, 1);
     const radius = Math.max(3, Math.min(10, Math.min(spacingX, spacingY) * 0.32));
 
-    const activeColor: [number, number, number] = [63, 111, 104]; // SIM_COLORS.accentStrong
-    const decayedColor: [number, number, number] = [222, 231, 225]; // SIM_COLORS.grid
+    const activeColor = hexToRgb(SIM_COLORS.accent);
+    const decayedColor = hexToRgb(SIM_COLORS.ground);
 
     for (let i = 0; i < N0; i++) {
       const col = i % cols;

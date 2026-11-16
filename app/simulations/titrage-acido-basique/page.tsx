@@ -42,8 +42,8 @@ function computePH(Ca: number, Va: number, Cb: number, Vb: number) {
 /** Couleur d'indicateur (type phénolphtaléine) : incolore avant pH 8, rose au-delà de 10. */
 function indicatorColor(pH: number) {
   const f = Math.max(0, Math.min(1, (pH - 8) / 2));
-  const from = [0xf2, 0xee, 0xe0];
-  const to = [0xe3, 0xae, 0xc2];
+  const from = [0x1a, 0x2c, 0x4a];
+  const to = [0xff, 0x5c, 0xc8];
   const mix = from.map((c, i) => Math.round(c + (to[i] - c) * f));
   return `rgb(${mix[0]}, ${mix[1]}, ${mix[2]})`;
 }

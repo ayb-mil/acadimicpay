@@ -443,8 +443,8 @@ export default function ProjectileSimulation() {
 
         <p className="mx-auto mt-6 max-w-3xl text-xs leading-relaxed text-[var(--sim-text-muted)]">
           Modèle : chute libre sans frottement de l&apos;air. x(t) = v₀·cos(θ)·t,
-          y(t) = h₀ + v₀·sin(θ)·t − ½·g·t². Vecteurs : ocre = v<sub>x</sub>, lavande = v<sub>y</sub>,
-          vert foncé = vitesse résultante.
+          y(t) = h₀ + v₀·sin(θ)·t − ½·g·t². Vecteurs : ambre = v<sub>x</sub>, violet = v<sub>y</sub>,
+          vert = vitesse résultante.
         </p>
       </div>
     </div>

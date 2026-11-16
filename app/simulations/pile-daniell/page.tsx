@@ -79,8 +79,8 @@ export default function PileDaniellSimulation() {
       ctx.fillStyle = SIM_COLORS.textMuted;
       ctx.fillText(label, x + 10, beakerBottom - 10);
     };
-    drawBeaker(leftX, "rgba(167, 156, 196, 0.18)", "Zn²⁺ (SO₄²⁻)");
-    drawBeaker(rightX, "rgba(110, 168, 159, 0.28)", "Cu²⁺ (SO₄²⁻)");
+    drawBeaker(leftX, "rgba(155, 123, 255, 0.14)", "Zn²⁺ (SO₄²⁻)");
+    drawBeaker(rightX, "rgba(34, 228, 217, 0.2)", "Cu²⁺ (SO₄²⁻)");
 
     /* Électrodes. */
     const znX = leftX + beakerW / 2;

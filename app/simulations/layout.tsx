@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, IBM_Plex_Sans_Arabic } from "next/font/google";
 import type { ReactNode } from "react";
 
@@ -29,6 +29,12 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+export const viewport: Viewport = { themeColor: "#05080F" };
+
 export default function SimulationsLayout({ children }: { children: ReactNode }) {
-  return <div className={`${display.variable} ${arabic.variable}`}>{children}</div>;
+  return (
+    <div className={`${display.variable} ${arabic.variable} min-h-screen bg-[#05080F] [color-scheme:dark]`}>
+      {children}
+    </div>
+  );
 }
