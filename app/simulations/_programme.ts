@@ -32,6 +32,10 @@ const SIM = {
   superposition: "Superposition et réflexion",
   celerite: "Célérité d'une onde et retard temporel",
   em: "Onde électromagnétique",
+  sinus: "Onde progressive sinusoïdale",
+  ultrasons: "Ultrasons et oscilloscope",
+  cuve: "Diffraction dans une cuve à ondes",
+  strobo: "Étude stroboscopique",
 };
 
 export const PROGRAMME: ProgUnit[] = [
@@ -109,32 +113,39 @@ export const PROGRAMME: ProgUnit[] = [
           {
             title: "Onde progressive périodique",
             detail: "Périodicité temporelle (période T) et périodicité spatiale (longueur d'onde λ).",
+            sim: { href: "/simulations/onde-sinusoidale", label: SIM.sinus },
           },
           {
             title: "Onde sinusoïdale : longueur d'onde et période",
             formulas: ["v = λ / T = λ·f", "d / λ = Δt / T = k"],
+            sim: { href: "/simulations/onde-sinusoidale", label: SIM.sinus },
           },
           {
             title: "Points vibrant en phase ou en opposition de phase",
             formulas: ["en phase : d = k·λ", "opposition de phase : d = (2k + 1)·λ/2"],
+            sim: { href: "/simulations/onde-sinusoidale", label: SIM.sinus },
           },
           {
             title: "Mesure du retard à l'oscilloscope (ultrasons)",
             formulas: ["τ = balayage × nombre de divisions"],
+            sim: { href: "/simulations/ultrasons-oscilloscope", label: SIM.ultrasons },
           },
           {
             title: "Diffraction d'une onde mécanique",
             detail:
               "a > λ : onde diaphragmée ; a ≤ λ : onde diffractée, de même fréquence, même longueur d'onde et même célérité.",
+            sim: { href: "/simulations/diffraction-cuve-ondes", label: SIM.cuve },
           },
           {
             title: "Étude stroboscopique",
             formulas: ["immobilité apparente : f = k·fₑ", "ralenti apparent : fₐ = f − fₑ"],
+            sim: { href: "/simulations/stroboscope", label: SIM.strobo },
           },
           {
             title: "Milieu dispersif",
             detail:
               "La célérité dépend de la fréquence (surface de l'eau) ; l'air n'est pas dispersif pour les ondes sonores.",
+            sim: { href: "/simulations/onde-sinusoidale?mode=eau", label: SIM.sinus },
           },
         ],
       },
