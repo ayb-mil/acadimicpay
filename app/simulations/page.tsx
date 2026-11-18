@@ -12,15 +12,13 @@ import {
   useTransform,
 } from "framer-motion";
 import SimPreview, { type PreviewKind } from "./_hub/SimPreview";
+import { PROGRAMME, WHATSAPP, coverage } from "./_programme";
 
 const HeroScene = dynamic(() => import("./_hub/HeroScene"), { ssr: false });
 
 /* ══════════════════════════════════════════════════════════════════════════
    CONSTANTES À ÉDITER — tout est ici, rien de dispersé dans le JSX.
    ══════════════════════════════════════════════════════════════════════════ */
-
-/** Numéro WhatsApp au format international sans « + » (= +212 6 09 64 88 11). */
-const WHATSAPP = "212609648811";
 
 /** Bloc « À propos ». */
 const ABOUT = {
@@ -97,6 +95,16 @@ const content = {
         { title: "Pile Daniell", href: "/simulations/pile-daniell" },
         { title: "Onde électromagnétique (lumière)", href: "/simulations/onde-electromagnetique" },
       ],
+    },
+    programme: {
+      eyebrow: "Programme officiel",
+      title: "Programme 2ème Bac PC (BIOF)",
+      sub: "Choisissez votre leçon : chaque partie du cours a sa simulation, dans l'ordre du cours.",
+      lesson: "Leçon",
+      parts: "parties avec simulation",
+      open: "Ouvrir la leçon",
+      soon: "Autres unités (électricité, mécanique, nucléaire) : en cours d'ajout.",
+      units: { ondes: "Les ondes" },
     },
     service: {
       eyebrow: "Sur mesure",
@@ -200,6 +208,16 @@ const content = {
         { title: "الموجة الكهرمغنطيسية (الضوء)", href: "/simulations/onde-electromagnetique" },
       ],
     },
+    programme: {
+      eyebrow: "البرنامج الرسمي",
+      title: "برنامج الثانية باكالوريا علوم فيزيائية (خيار فرنسية)",
+      sub: "اختر درسك: لكل جزء من الدرس محاكاته، بنفس ترتيب الدرس.",
+      lesson: "الدرس",
+      parts: "أجزاء لها محاكاة",
+      open: "فتح الدرس",
+      soon: "باقي الوحدات (الكهرباء، الميكانيك، النووي): قيد الإضافة.",
+      units: { ondes: "الموجات" },
+    },
     service: {
       eyebrow: "حسب الطلب",
       title: "لدروسكم في الفيزياء والكيمياء",
@@ -301,6 +319,16 @@ const content = {
         { title: "Daniell cell", href: "/simulations/pile-daniell" },
         { title: "Electromagnetic wave (light)", href: "/simulations/onde-electromagnetique" },
       ],
+    },
+    programme: {
+      eyebrow: "Official curriculum",
+      title: "2nd Bac PC programme (BIOF)",
+      sub: "Pick your lesson: every part of the course has its simulation, in the order of the course.",
+      lesson: "Lesson",
+      parts: "parts with a simulation",
+      open: "Open the lesson",
+      soon: "Other units (electricity, mechanics, nuclear): being added.",
+      units: { ondes: "Waves" },
     },
     service: {
       eyebrow: "Made to order",
@@ -732,6 +760,62 @@ export default function SimulationsPage() {
                 );
               })}
             </ul>
+          </section>
+
+          {/* ─────────── Programme 2ème Bac ─────────── */}
+          <section id="programme" className="relative mx-auto max-w-7xl scroll-mt-24 px-4 pt-24 sm:px-6">
+            <SectionHead eyebrow={t.programme.eyebrow} title={t.programme.title} sub={t.programme.sub} />
+            {PROGRAMME.map((unit) => (
+              <div key={unit.slug} className="mt-10">
+                <h3 className={`${DISPLAY} flex items-center gap-3 text-xl font-bold`}>
+                  <span aria-hidden="true" className="h-px w-8 bg-gradient-to-r from-[#22E4D9] to-[#9B7BFF]" />
+                  {t.programme.units[unit.slug as keyof typeof t.programme.units] ?? unit.title}
+                </h3>
+                <ul className="mt-5 grid gap-4 md:grid-cols-3">
+                  {unit.lessons.map((lesson, i) => {
+                    const { covered, total } = coverage(lesson);
+                    return (
+                      <li key={lesson.slug}>
+                        <Reveal delay={i * 0.06} className="h-full">
+                          <a
+                            href={`/simulations/programme/${lesson.slug}`}
+                            className={`${GLASS} group flex h-full flex-col p-6 transition duration-300 hover:-translate-y-1 hover:border-[#22E4D9]/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22E4D9]`}
+                          >
+                            <span className={`${MONO} text-xs font-semibold text-[#22E4D9]`}>
+                              {t.programme.lesson} {lesson.num}
+                            </span>
+                            <span dir="ltr" className={`${DISPLAY} mt-2 text-lg font-bold leading-snug rtl:text-end`}>
+                              {lesson.title}
+                            </span>
+                            <span dir="ltr" className="mt-2 text-sm leading-relaxed text-[#8C9CC0] rtl:text-end">
+                              {lesson.summary}
+                            </span>
+                            <span className="mt-auto block pt-5">
+                              <span className="block h-1.5 overflow-hidden rounded-full bg-white/10">
+                                <span
+                                  className="block h-full rounded-full bg-gradient-to-r from-[#22E4D9] to-[#4ADE80]"
+                                  style={{ width: `${(covered / total) * 100}%` }}
+                                />
+                              </span>
+                              <span className="mt-2 flex items-center justify-between gap-3 text-xs">
+                                <span className="text-[#8C9CC0]">
+                                  {covered}/{total} {t.programme.parts}
+                                </span>
+                                <span className="font-semibold text-[#22E4D9]">
+                                  {t.programme.open}{" "}
+                                  <span aria-hidden="true" className="inline-block rtl:-scale-x-100">→</span>
+                                </span>
+                              </span>
+                            </span>
+                          </a>
+                        </Reveal>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+            <p className="mt-6 text-sm text-[#8C9CC0]">{t.programme.soon}</p>
           </section>
 
           {/* ─────────── Sur mesure ─────────── */}
