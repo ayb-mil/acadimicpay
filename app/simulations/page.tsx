@@ -103,8 +103,8 @@ const content = {
       lesson: "Leçon",
       parts: "parties avec simulation",
       open: "Ouvrir la leçon",
-      soon: "Autres unités (électricité, mécanique, nucléaire) : en cours d'ajout.",
-      units: { ondes: "Les ondes" },
+      soon: "Autres unités (électricité, nucléaire) : en cours d'ajout.",
+      units: { ondes: "Les ondes", mecanique: "Mécanique" },
     },
     service: {
       eyebrow: "Sur mesure",
@@ -215,8 +215,8 @@ const content = {
       lesson: "الدرس",
       parts: "أجزاء لها محاكاة",
       open: "فتح الدرس",
-      soon: "باقي الوحدات (الكهرباء، الميكانيك، النووي): قيد الإضافة.",
-      units: { ondes: "الموجات" },
+      soon: "باقي الوحدات (الكهرباء، النووي): قيد الإضافة.",
+      units: { ondes: "الموجات", mecanique: "الميكانيك" },
     },
     service: {
       eyebrow: "حسب الطلب",
@@ -327,8 +327,8 @@ const content = {
       lesson: "Lesson",
       parts: "parts with a simulation",
       open: "Open the lesson",
-      soon: "Other units (electricity, mechanics, nuclear): being added.",
-      units: { ondes: "Waves" },
+      soon: "Other units (electricity, nuclear): being added.",
+      units: { ondes: "Waves", mecanique: "Mechanics" },
     },
     service: {
       eyebrow: "Made to order",

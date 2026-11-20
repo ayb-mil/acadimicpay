@@ -38,6 +38,11 @@ const SIM = {
   strobo: "Étude stroboscopique",
   diffLumiere: "Diffraction de la lumière",
   prisme: "Dispersion de la lumière par un prisme",
+  cinematique: "Vecteurs vitesse, accélération et repère de Frenet",
+  rectilignes: "Mouvements rectilignes",
+  newton: "Les trois lois de Newton",
+  plan: "Mouvement sur un plan horizontal ou incliné",
+  curviligne: "Mouvement curviligne sur un rail",
 };
 
 export const PROGRAMME: ProgUnit[] = [
@@ -218,6 +223,99 @@ export const PROGRAMME: ProgUnit[] = [
             detail: "L'indice du verre dépend de la longueur d'onde : le verre est un milieu dispersif.",
             formulas: ["n = a + b / λ₀²"],
             sim: { href: "/simulations/prisme?mode=blanche", label: SIM.prisme },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "mecanique",
+    title: "Mécanique",
+    lessons: [
+      {
+        slug: "lois-de-newton",
+        num: 1,
+        title: "Lois de Newton",
+        summary:
+          "Vecteurs position, vitesse et accélération, repère de Frenet, mouvements rectilignes, forces, les trois lois de Newton et leurs applications.",
+        parts: [
+          {
+            title: "Notions générales sur le mouvement",
+            detail: "Référentiel, repère d'espace et de temps, vecteur position et équations horaires x(t), y(t), z(t).",
+            formulas: ["OM = x·i + y·j + z·k"],
+            sim: { href: "/simulations/cinematique-frenet", label: SIM.cinematique },
+          },
+          {
+            title: "Vecteur vitesse",
+            formulas: ["v = dOG/dt", "v = √(ẋ² + ẏ² + ż²)"],
+            sim: { href: "/simulations/cinematique-frenet", label: SIM.cinematique },
+          },
+          {
+            title: "Vecteur accélération",
+            formulas: ["a = dv/dt", "a = √(ẍ² + ÿ² + z̈²)"],
+            sim: { href: "/simulations/cinematique-frenet", label: SIM.cinematique },
+          },
+          {
+            title: "Repère de Frenet",
+            detail: "u tangent à la trajectoire dans le sens du mouvement, n normal et dirigé vers le centre de courbure.",
+            formulas: ["aₜ = dv/dt", "aₙ = v²/ρ"],
+            sim: { href: "/simulations/cinematique-frenet?mode=frenet", label: SIM.cinematique },
+          },
+          {
+            title: "Mouvement rectiligne uniforme",
+            formulas: ["a = 0", "x = v·t + x₀"],
+            sim: { href: "/simulations/mouvements-rectilignes?mode=mru", label: SIM.rectilignes },
+          },
+          {
+            title: "Mouvement rectiligne uniformément varié",
+            formulas: ["v = a·t + v₀", "x = ½·a·t² + v₀·t + x₀"],
+            sim: { href: "/simulations/mouvements-rectilignes?mode=mruv", label: SIM.rectilignes },
+          },
+          {
+            title: "Forces intérieures et forces extérieures",
+            detail: "Système isolé : aucune force extérieure ; pseudo-isolé : les forces extérieures se compensent.",
+            sim: { href: "/simulations/lois-newton?mode=inertie", label: SIM.newton },
+          },
+          {
+            title: "1ʳᵉ loi de Newton : principe d'inertie",
+            detail: "Dans un référentiel galiléen, un corps isolé ou pseudo-isolé est immobile ou en mouvement rectiligne uniforme.",
+            sim: { href: "/simulations/lois-newton?mode=inertie", label: SIM.newton },
+          },
+          {
+            title: "2ᵉ loi de Newton : théorème du centre d'inertie",
+            formulas: ["ΣF_ext = m·a_G"],
+            sim: { href: "/simulations/lois-newton?mode=deuxieme", label: SIM.newton },
+          },
+          {
+            title: "3ᵉ loi de Newton : principe des actions réciproques",
+            formulas: ["F_A/B = −F_B/A", "F = G·m_A·m_B / d²"],
+            sim: { href: "/simulations/lois-newton?mode=troisieme", label: SIM.newton },
+          },
+          {
+            title: "Mouvement sur un plan horizontal sans frottement",
+            formulas: ["F + P + R = m·a", "a = F/m"],
+            sim: { href: "/simulations/plan-incline?mode=horizontal", label: SIM.plan },
+          },
+          {
+            title: "Mouvement sur un plan horizontal avec frottement",
+            formulas: ["R = √(f² + R_N²)", "k = tan φ = f / R_N"],
+            sim: { href: "/simulations/plan-incline?mode=horizontal", label: SIM.plan },
+          },
+          {
+            title: "Mouvement sur un plan incliné sans frottement",
+            formulas: ["P + R = m·a", "a = g·sin α"],
+            sim: { href: "/simulations/plan-incline?mode=incline", label: SIM.plan },
+          },
+          {
+            title: "Mouvement sur un plan incliné avec frottement",
+            formulas: ["P + R + T = m·a", "R = √(f² + R_N²)"],
+            sim: { href: "/simulations/plan-incline?mode=incline", label: SIM.plan },
+          },
+          {
+            title: "Mouvement curviligne",
+            detail: "Bille sur un rail ABCD : plan incliné, partie horizontale avec frottement, puis portion circulaire.",
+            formulas: ["v_B = √(2·g·AB·sin α)", "a = −f/m", "R = mg(3·cos θ − 2)"],
+            sim: { href: "/simulations/mouvement-curviligne", label: SIM.curviligne },
           },
         ],
       },
