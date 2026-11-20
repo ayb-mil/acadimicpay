@@ -430,7 +430,9 @@ export default function LoisNewtonPage() {
           <Notes>
             {mode === "inertie" ? (
               <>
-                <p>Forces extérieures : P (Terre) et R (coussin d&apos;air). Elles se compensent : le système est pseudo-isolé.</p>
+                <p>Forces extérieures : exercées par des corps qui n&apos;appartiennent pas au système. Forces intérieures : exercées par une partie du système sur une autre.</p>
+                <p>Système isolé : aucune force extérieure. Pseudo-isolé : les forces extérieures se compensent.</p>
+                <p>Ici, les forces extérieures sont P (Terre) et R (coussin d&apos;air). Elles se compensent : le système est pseudo-isolé.</p>
                 <p>Dans un référentiel galiléen (ici terrestre), il est alors en mouvement rectiligne uniforme.</p>
               </>
             ) : mode === "deuxieme" ? (

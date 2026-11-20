@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getServices } from "@/lib/content";
+import { PROGRAMME } from "./simulations/_programme";
 
 // Domaine de référence = URL canonique (www). Aligné sur NEXT_PUBLIC_SITE_URL
 // pour rester cohérent avec les balises canonical/OG. L'apex acadpay.me
@@ -39,7 +40,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...serviceEntries].map(({ path, priority }) => ({
+  // Pages de leçon du programme 2ème Bac et simulations qu'elles référencent (dérivées des données).
+  const lessonEntries = PROGRAMME.flatMap((u) => u.lessons).map((l) => ({
+    path: `/simulations/programme/${l.slug}`,
+    priority: 0.7,
+  }));
+  const simPaths = new Set(
+    PROGRAMME.flatMap((u) => u.lessons.flatMap((l) => l.parts.flatMap((part) => (part.sim ? [part.sim.href.split("?")[0]] : []))))
+  );
+  const simEntries = [...simPaths].map((path) => ({ path, priority: 0.6 }));
+
+  return [...staticEntries, ...serviceEntries, ...lessonEntries, ...simEntries].map(({ path, priority }) => ({
     url: `${BASE}${path}`,
     lastModified: now,
     changeFrequency: "monthly" as const,

@@ -42,6 +42,12 @@ const SIMS: { href: string; kind: PreviewKind; domain: Domain; eq: string }[] = 
   { href: "/simulations/onde-electromagnetique", kind: "emwave", domain: "optics", eq: "v = c/n  ·  λ = λ₀/n" },
 ];
 
+/** Nombre total de simulations en ligne (vitrine + programme), sans doublon. */
+const TOTAL_SIMS = new Set([
+  ...SIMS.map((s) => s.href),
+  ...PROGRAMME.flatMap((u) => u.lessons.flatMap((l) => l.parts.flatMap((p) => (p.sim ? [p.sim.href.split("?")[0]] : [])))),
+]).size;
+
 const DOMAIN_COLOR: Record<Domain, string> = {
   mechanics: "#22E4D9",
   electricity: "#9B7BFF",
@@ -74,14 +80,14 @@ const content = {
       sub: "Simulations HTML sur mesure, adaptées à votre chapitre du programme marocain. Utilisables en classe sans installation, sur ordinateur ou vidéoprojecteur.",
       cta: "Contacter sur WhatsApp",
       cta2: "Voir les simulations",
-      stats: ["9 simulations en ligne", "Programme marocain", "Hors-ligne, sans installation"],
+      stats: ["{n} simulations en ligne", "Programme marocain", "Hors-ligne, sans installation"],
       scroll: "Défiler",
     },
     domains: { mechanics: "Mécanique", electricity: "Électricité", chemistry: "Chimie", nuclear: "Nucléaire", optics: "Optique" },
     demos: {
       eyebrow: "Laboratoire en ligne",
       title: "Simulations déjà en ligne",
-      sub: "Neuf exemples fonctionnels, à tester dès maintenant.",
+      sub: "Une sélection à tester dès maintenant ; toutes les autres sont classées par leçon dans le programme ci-dessous.",
       live: "Aperçu animé",
       cta: "Ouvrir",
       items: [
@@ -186,14 +192,14 @@ const content = {
       sub: "محاكاة بصيغة HTML مصممة خصيصاً حسب درسكم في المنهاج المغربي. تُستعمل في القسم دون أي تثبيت، على حاسوب أو عبر جهاز العرض.",
       cta: "تواصل عبر واتساب",
       cta2: "شاهد المحاكاة",
-      stats: ["9 محاكاة متوفرة", "المنهاج المغربي", "دون إنترنت ولا تثبيت"],
+      stats: ["{n} محاكاة متوفرة", "المنهاج المغربي", "دون إنترنت ولا تثبيت"],
       scroll: "مرّر",
     },
     domains: { mechanics: "الميكانيك", electricity: "الكهرباء", chemistry: "الكيمياء", nuclear: "الفيزياء النووية", optics: "البصريات" },
     demos: {
       eyebrow: "مختبر على الإنترنت",
       title: "محاكاة متوفرة الآن",
-      sub: "تسعة أمثلة تشتغل فعلياً، جرّبها الآن.",
+      sub: "مختارات يمكنك تجربتها الآن؛ باقي المحاكاة مرتبة حسب الدروس في البرنامج أسفله.",
       live: "معاينة حية",
       cta: "فتح",
       items: [
@@ -298,14 +304,14 @@ const content = {
       sub: "Custom HTML simulations matched to your chapter in the Moroccan curriculum. Usable in class with no installation, on a computer or projector.",
       cta: "Contact on WhatsApp",
       cta2: "See the simulations",
-      stats: ["9 simulations online", "Moroccan curriculum", "Offline, no install"],
+      stats: ["{n} simulations online", "Moroccan curriculum", "Offline, no install"],
       scroll: "Scroll",
     },
     domains: { mechanics: "Mechanics", electricity: "Electricity", chemistry: "Chemistry", nuclear: "Nuclear", optics: "Optics" },
     demos: {
       eyebrow: "Online lab",
       title: "Simulations already online",
-      sub: "Nine working examples, ready to try now.",
+      sub: "A selection to try right now; all the others are organised by lesson in the programme below.",
       live: "Live preview",
       cta: "Open",
       items: [
@@ -685,7 +691,7 @@ export default function SimulationsPage() {
                   {t.hero.stats.map((s, i) => (
                     <li key={s} className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full" style={{ background: ["#22E4D9", "#9B7BFF", "#4ADE80"][i] }} />
-                      {s}
+                      {s.replace("{n}", String(TOTAL_SIMS))}
                     </li>
                   ))}
                 </ul>
