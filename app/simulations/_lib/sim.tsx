@@ -152,12 +152,18 @@ export function SimCanvas({
   W: number;
   H: number;
 }) {
+  // Sur téléphone, la figure garde une largeur minimale (texte lisible) et défile horizontalement.
   return (
-    <canvas
-      ref={canvasRef}
-      className="block w-full rounded-t-3xl"
-      style={{ aspectRatio: `${W} / ${H}` }}
-    />
+    <>
+      <div className="overflow-x-auto rounded-t-3xl">
+        <canvas
+          ref={canvasRef}
+          className="block w-full min-w-[640px] rounded-t-3xl"
+          style={{ aspectRatio: `${W} / ${H}` }}
+        />
+      </div>
+      <p className="px-4 pt-2 text-[11px] text-[var(--sim-text-muted)] sm:hidden">↔ Faites glisser la figure pour la voir en entier.</p>
+    </>
   );
 }
 

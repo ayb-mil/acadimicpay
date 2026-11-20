@@ -237,15 +237,18 @@ export default function ProjectileSimulation() {
         <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_320px]">
           {/* ─────────── Canvas + lecture ─────────── */}
           <div className={SIM_CLASSES.card}>
-            <canvas
-              ref={canvasRef}
-              width={CANVAS_W}
-              height={CANVAS_H}
-              className="block w-full rounded-t-3xl"
-              style={{ aspectRatio: `${CANVAS_W} / ${CANVAS_H}` }}
-            />
+            <div className="overflow-x-auto rounded-t-3xl">
+              <canvas
+                ref={canvasRef}
+                width={CANVAS_W}
+                height={CANVAS_H}
+                className="block w-full min-w-[640px] rounded-t-3xl"
+                style={{ aspectRatio: `${CANVAS_W} / ${CANVAS_H}` }}
+              />
+            </div>
+            <p className="px-4 pt-2 text-[11px] text-[var(--sim-text-muted)] sm:hidden">↔ Faites glisser la figure pour la voir en entier.</p>
             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[var(--sim-border)] p-4">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <button
                   type="button"
                   onClick={() => {

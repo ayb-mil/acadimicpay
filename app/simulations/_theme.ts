@@ -54,7 +54,7 @@ export function simThemeVars(): CSSProperties {
 
 /** Classes Tailwind partagées (mêmes tokens, à réutiliser telles quelles). */
 export const SIM_CLASSES = {
-  card: "rounded-3xl border border-[var(--sim-border)] bg-[var(--sim-panel)] shadow-[0_0_0_1px_rgba(34,228,217,0.03),0_20px_60px_-30px_rgba(34,228,217,0.25)]",
+  card: "min-w-0 rounded-3xl border border-[var(--sim-border)] bg-[var(--sim-panel)] shadow-[0_0_0_1px_rgba(34,228,217,0.03),0_20px_60px_-30px_rgba(34,228,217,0.25)]",
   btnPrimary:
     "inline-flex items-center justify-center gap-2 rounded-full bg-[var(--sim-accent-strong)] px-5 py-2.5 text-sm font-semibold text-[var(--sim-on-accent)] shadow-[0_0_24px_-6px_rgba(34,228,217,0.7)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--sim-accent-strong)]",
   btnGhost:

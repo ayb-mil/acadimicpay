@@ -150,13 +150,16 @@ export default function RefractionSimulation() {
 
         <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_320px]">
           <div className={SIM_CLASSES.card}>
-            <canvas
-              ref={canvasRef}
-              width={CANVAS_W}
-              height={CANVAS_H}
-              className="block w-full rounded-3xl"
-              style={{ aspectRatio: `${CANVAS_W} / ${CANVAS_H}` }}
-            />
+            <div className="overflow-x-auto rounded-3xl">
+              <canvas
+                ref={canvasRef}
+                width={CANVAS_W}
+                height={CANVAS_H}
+                className="block w-full min-w-[640px] rounded-3xl"
+                style={{ aspectRatio: `${CANVAS_W} / ${CANVAS_H}` }}
+              />
+            </div>
+            <p className="px-4 pt-2 text-[11px] text-[var(--sim-text-muted)] sm:hidden">↔ Faites glisser la figure pour la voir en entier.</p>
             <div className="grid grid-cols-2 gap-px overflow-hidden rounded-b-3xl bg-[var(--sim-border)] sm:grid-cols-4">
               {[
                 { label: "θ₁ (incidence)", value: `${theta1Deg}°` },

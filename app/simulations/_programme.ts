@@ -36,6 +36,8 @@ const SIM = {
   ultrasons: "Ultrasons et oscilloscope",
   cuve: "Diffraction dans une cuve à ondes",
   strobo: "Étude stroboscopique",
+  diffLumiere: "Diffraction de la lumière",
+  prisme: "Dispersion de la lumière par un prisme",
 };
 
 export const PROGRAMME: ProgUnit[] = [
@@ -159,6 +161,7 @@ export const PROGRAMME: ProgUnit[] = [
           {
             title: "Diffraction de la lumière",
             detail: "Un faisceau laser traversant une fente fine ou contournant un fil s'étale sur l'écran.",
+            sim: { href: "/simulations/diffraction-lumiere", label: SIM.diffLumiere },
           },
           {
             title: "La lumière est une onde",
@@ -168,6 +171,7 @@ export const PROGRAMME: ProgUnit[] = [
           {
             title: "Lumière monochromatique et polychromatique",
             detail: "Une radiation unique (laser) ou un mélange de radiations (lumière blanche).",
+            sim: { href: "/simulations/prisme?mode=blanche", label: SIM.prisme },
           },
           {
             title: "Célérité de la lumière",
@@ -187,28 +191,33 @@ export const PROGRAMME: ProgUnit[] = [
           {
             title: "Domaine des radiations lumineuses",
             formulas: ["visible : 400 nm < λ₀ < 800 nm", "UV : λ₀ < 400 nm · IR : λ₀ > 800 nm"],
+            sim: { href: "/simulations/onde-electromagnetique", label: SIM.em },
           },
           {
             title: "Diffraction d'une lumière monochromatique",
             detail: "Laser, fente de largeur a ou fil, écran à la distance D : tache centrale de largeur L.",
+            sim: { href: "/simulations/diffraction-lumiere", label: SIM.diffLumiere },
           },
           {
             title: "Écart angulaire",
             formulas: ["θ = λ / a", "L = 2·λ·D / a"],
+            sim: { href: "/simulations/diffraction-lumiere?mode=graphe", label: SIM.diffLumiere },
           },
           {
             title: "Relations du prisme",
             formulas: ["sin i = n·sin r", "n·sin r' = sin i'", "A = r + r'", "D = i + i' − A"],
+            sim: { href: "/simulations/prisme", label: SIM.prisme },
           },
           {
             title: "Dispersion de la lumière par un prisme",
             detail: "La lumière blanche est décomposée en un spectre continu.",
+            sim: { href: "/simulations/prisme?mode=blanche", label: SIM.prisme },
           },
           {
             title: "Interprétation de la dispersion",
             detail: "L'indice du verre dépend de la longueur d'onde : le verre est un milieu dispersif.",
             formulas: ["n = a + b / λ₀²"],
-            sim: { href: "/simulations/onde-electromagnetique", label: SIM.em },
+            sim: { href: "/simulations/prisme?mode=blanche", label: SIM.prisme },
           },
         ],
       },

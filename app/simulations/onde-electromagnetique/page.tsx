@@ -4,6 +4,11 @@ import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { SIM_CLASSES, SIM_COLORS, simThemeVars } from "../_theme";
 import { C_VIS, SCALE, type EMView } from "./constants";
+import { VISIBLE_MAX, VISIBLE_MIN, radiationName, spectrumGradient, wavelengthToRgb } from "../_lib/spectrum";
+
+const L_MIN = 250;
+const L_MAX = 1000;
+const SPECTRUM = spectrumGradient(L_MIN, L_MAX);
 
 const EMWaveScene = dynamic(() => import("./EMWaveScene"), {
   ssr: false,
@@ -34,49 +39,6 @@ const MEDIA: { id: MediumId; label: string; n?: number; cauchy?: { a: number; b:
   { id: "diamant", label: "Diamant", n: 2.42 },
   { id: "custom", label: "Personnalisé" },
 ];
-
-/** Couleur approximative d'une radiation visible (approximation classique de Bruton). */
-function wavelengthToRgb(nm: number): [number, number, number] {
-  let r = 0;
-  let g = 0;
-  let b = 0;
-  if (nm < 440) {
-    r = -(nm - 440) / 60;
-    b = 1;
-  } else if (nm < 490) {
-    g = (nm - 440) / 50;
-    b = 1;
-  } else if (nm < 510) {
-    g = 1;
-    b = -(nm - 510) / 20;
-  } else if (nm < 580) {
-    r = (nm - 510) / 70;
-    g = 1;
-  } else if (nm < 645) {
-    r = 1;
-    g = -(nm - 645) / 65;
-  } else {
-    r = 1;
-  }
-  const f = nm < 420 ? 0.3 + (0.7 * (nm - 380)) / 40 : nm > 700 ? 0.3 + (0.7 * (780 - nm)) / 80 : 1;
-  const c = (v: number) => Math.round(255 * Math.pow(Math.max(0, v) * f, 0.8));
-  return [c(r), c(g), c(b)];
-}
-
-function colorName(nm: number) {
-  if (nm < 450) return "violet";
-  if (nm < 495) return "bleu";
-  if (nm < 570) return "vert";
-  if (nm < 590) return "jaune";
-  if (nm < 620) return "orange";
-  return "rouge";
-}
-
-const SPECTRUM = `linear-gradient(to right, ${Array.from({ length: 21 }, (_, i) => {
-  const nm = 380 + i * 20;
-  const [r, g, b] = wavelengthToRgb(nm);
-  return `rgb(${r}, ${g}, ${b}) ${i * 5}%`;
-}).join(", ")})`;
 
 /** a·10ⁿ en écriture scientifique lisible (« 5,45 × 10¹⁴ »). */
 function sci(value: number, digits = 2) {
@@ -117,7 +79,8 @@ export default function OndeElectromagnetiquePage() {
   const v = C / n;
   const lambda = lambda0 / n;
   const [r, g, b] = wavelengthToRgb(lambda0);
-  const swatch = `rgb(${r}, ${g}, ${b})`;
+  const visible = lambda0 >= VISIBLE_MIN && lambda0 <= VISIBLE_MAX;
+  const swatch = visible ? `rgb(${r}, ${g}, ${b})` : "transparent";
   // Période affichée / période réelle : indépendant de λ₀ (les deux sont ∝ λ₀).
   const slowFactor = (lambda0 * SCALE) / C_VIS / (1 / nu) / speed;
 
@@ -230,15 +193,19 @@ export default function OndeElectromagnetiquePage() {
                   <span
                     aria-hidden="true"
                     className="h-3 w-3 rounded-full"
-                    style={{ background: swatch, boxShadow: `0 0 10px ${swatch}` }}
+                    style={{
+                      background: swatch,
+                      boxShadow: visible ? `0 0 10px ${swatch}` : "none",
+                      border: visible ? "none" : `1px dashed ${SIM_COLORS.textMuted}`,
+                    }}
                   />
-                  {Math.round(lambda0)} nm · {colorName(lambda0)}
+                  {Math.round(lambda0)} nm · {radiationName(lambda0)}
                 </span>
               </div>
               <input
                 type="range"
-                min={380}
-                max={780}
+                min={L_MIN}
+                max={L_MAX}
                 step={5}
                 value={lambda0}
                 onChange={(e) => setLambda0(Number(e.target.value))}
@@ -248,13 +215,13 @@ export default function OndeElectromagnetiquePage() {
                 <span
                   aria-hidden="true"
                   className="absolute -top-1 w-1 -translate-x-1/2 rounded-full bg-white shadow-[0_0_6px_white]"
-                  style={{ left: `${((lambda0 - 380) / 400) * 100}%`, height: 18 }}
+                  style={{ left: `${((lambda0 - L_MIN) / (L_MAX - L_MIN)) * 100}%`, height: 18 }}
                 />
               </div>
               <div className="mt-1 flex justify-between text-[10px] text-[var(--sim-text-muted)]">
-                <span>380 nm</span>
-                <span>Spectre visible</span>
-                <span>780 nm</span>
+                <span>{L_MIN} nm · UV</span>
+                <span>visible : 400 à 800 nm</span>
+                <span>IR · {L_MAX} nm</span>
               </div>
             </label>
 
@@ -329,6 +296,7 @@ export default function OndeElectromagnetiquePage() {
                 c = 3,00·10⁸ m/s · <Nu /> = c/λ₀ · v = c/n · λ = v/<Nu /> = λ₀/n
               </p>
               <p>La fréquence <Nu /> est imposée par la source : elle ne change pas d&apos;un milieu à l&apos;autre.</p>
+              <p>Domaine des radiations : visible de 400 à 800 nm ; ultraviolet (UV) en dessous et infrarouge (IR) au-dessus, invisibles pour l&apos;œil.</p>
               <p>
                 Animation ralentie environ {sci(slowFactor, 1)} fois. Modèle simplifié : l&apos;onde réfléchie
                 et la variation d&apos;amplitude à l&apos;interface ne sont pas représentées.
