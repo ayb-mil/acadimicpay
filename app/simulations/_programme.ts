@@ -47,6 +47,9 @@ const SIM = {
   chuteLibre: "Chute libre verticale",
   chuteFrottement: "Chute verticale avec frottement",
   euler: "Méthode d'Euler",
+  projectile: "Projectile dans le champ de pesanteur",
+  lorentz: "Champ magnétique et force de Lorentz",
+  particuleB: "Particule chargée dans un champ magnétique",
 };
 
 export const PROGRAMME: ProgUnit[] = [
@@ -396,6 +399,91 @@ export const PROGRAMME: ProgUnit[] = [
             detail: "Résolution approchée de l'équation différentielle, pas à pas ; on prend en général Δt ≈ τ/10.",
             formulas: ["aᵢ = A − B·vᵢⁿ", "vᵢ₊₁ = vᵢ + aᵢ·Δt"],
             sim: { href: "/simulations/methode-euler", label: SIM.euler },
+          },
+        ],
+      },
+      {
+        slug: "projectile-champ-pesanteur",
+        num: 4,
+        title: "Mouvement d'un projectile dans le champ de pesanteur",
+        summary: "Application de la 2ᵉ loi de Newton à un projectile, équations horaires, équation de la trajectoire, flèche et portée.",
+        parts: [
+          {
+            title: "Conditions initiales et 2ᵉ loi de Newton",
+            detail: "Le projectile, lancé de O avec une vitesse v₀ faisant l'angle α avec l'horizontale, n'est soumis qu'à son poids.",
+            formulas: ["a = g", "aₓ = 0 ; a_y = −g"],
+            sim: { href: "/simulations/projectile-pesanteur?mode=horaires", label: SIM.projectile },
+          },
+          {
+            title: "Équations horaires du mouvement",
+            detail: "Mouvement rectiligne uniforme selon Ox, uniformément varié selon Oy.",
+            formulas: ["vₓ = v₀·cos α ; v_y = −g·t + v₀·sin α", "x = v₀·cos α·t ; y = −½·g·t² + v₀·sin α·t"],
+            sim: { href: "/simulations/projectile-pesanteur?mode=horaires", label: SIM.projectile },
+          },
+          {
+            title: "Équation de la trajectoire",
+            detail: "On élimine le temps t = x/(v₀·cos α) : la trajectoire est une parabole.",
+            formulas: ["y = −g·x² / (2·v₀²·cos²α) + x·tan α"],
+            sim: { href: "/simulations/projectile-pesanteur?mode=trajectoire", label: SIM.projectile },
+          },
+          {
+            title: "La flèche (sommet de la trajectoire)",
+            detail: "Au sommet S, la composante verticale de la vitesse s'annule.",
+            formulas: ["t_S = v₀·sin α / g", "x_S = v₀²·sin 2α / (2g) ; y_S = v₀²·sin²α / (2g)"],
+            sim: { href: "/simulations/projectile-pesanteur?mode=fleche-portee", label: SIM.projectile },
+          },
+          {
+            title: "La portée",
+            detail: "Distance OP entre O et le point P où le projectile repasse par le plan horizontal de départ ; maximale pour α = 45°.",
+            formulas: ["OP = v₀²·sin 2α / g"],
+            sim: { href: "/simulations/projectile-pesanteur?mode=fleche-portee", label: SIM.projectile },
+          },
+        ],
+      },
+      {
+        slug: "particule-champ-magnetique",
+        num: 5,
+        title: "Mouvement d'une particule chargée dans un champ magnétique uniforme",
+        summary: "Champ magnétique uniforme, déviation d'un faisceau d'électrons, force de Lorentz, mouvement circulaire uniforme et déviation magnétique.",
+        parts: [
+          {
+            title: "Le champ magnétique uniforme",
+            detail: "Constant en direction, en sens et en valeur, par exemple entre deux bobines de Helmholtz ; représentation ⊙ (vers l'avant) et ⊗ (vers l'arrière).",
+            formulas: ["unité : le tesla (T)"],
+            sim: { href: "/simulations/force-lorentz?mode=champ", label: SIM.lorentz },
+          },
+          {
+            title: "Déviation d'une particule chargée",
+            detail: "Faisceau d'électrons : non dévié si v₀ ∥ B, trajectoire circulaire si v₀ ⊥ B.",
+            sim: { href: "/simulations/mouvement-champ-magnetique?mode=experience", label: SIM.particuleB },
+          },
+          {
+            title: "La force magnétique (force de Lorentz)",
+            detail: "Perpendiculaire au plan (v, B) ; sens donné par la règle de la main droite.",
+            formulas: ["F = q·v ∧ B", "F = |q|·v·B·sin(B, v)"],
+            sim: { href: "/simulations/force-lorentz?mode=force", label: SIM.lorentz },
+          },
+          {
+            title: "Sens de la force : règle de la main droite",
+            detail: "Doigts dans le sens de q·v, paume vers B : le pouce indique F (exemples du cours).",
+            sim: { href: "/simulations/force-lorentz?mode=regle", label: SIM.lorentz },
+          },
+          {
+            title: "Mouvement uniforme, plan et circulaire",
+            detail: "F ⊥ v : W(F) = 0, Ec et v constantes ; mouvement dans le plan ⊥ B ; rayon constant.",
+            formulas: ["R = m·v / (|q|·B)"],
+            sim: { href: "/simulations/mouvement-champ-magnetique?mode=cercle", label: SIM.particuleB },
+          },
+          {
+            title: "La déviation magnétique",
+            detail: "Arc de cercle dans la zone de champ de largeur ℓ, puis mouvement rectiligne jusqu'à l'écran.",
+            formulas: ["sin α = ℓ/R", "D_m ≈ D·ℓ·|q|·B / (m·v₀)"],
+            sim: { href: "/simulations/mouvement-champ-magnetique?mode=deviation", label: SIM.particuleB },
+          },
+          {
+            title: "Application : séparation des ions",
+            detail: "Ions de même vitesse et même charge : le rayon est proportionnel à la masse (exercices Mg²⁺, isotopes du mercure, He²⁺ et O²⁻).",
+            sim: { href: "/simulations/mouvement-champ-magnetique?mode=ions", label: SIM.particuleB },
           },
         ],
       },

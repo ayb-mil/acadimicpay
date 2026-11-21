@@ -270,3 +270,18 @@ export function Nu() {
 }
 
 export const fmt = (x: number, d = 2) => x.toFixed(d).replace(".", ",");
+
+const SUP: Record<string, string> = { "-": "⁻", "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };
+
+/** Écriture scientifique à la française : 1,60·10⁻¹⁹. */
+export function sci(x: number, d = 2) {
+  if (x === 0 || !Number.isFinite(x)) return "0";
+  let e = Math.floor(Math.log10(Math.abs(x)));
+  let m = x / Math.pow(10, e);
+  if (Math.abs(Number(m.toFixed(d))) >= 10) {
+    e += 1;
+    m /= 10;
+  }
+  if (e === 0) return fmt(m, d);
+  return `${fmt(m, d)}·10${String(e).split("").map((c) => SUP[c] ?? c).join("")}`;
+}
