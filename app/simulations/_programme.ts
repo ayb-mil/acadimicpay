@@ -43,6 +43,10 @@ const SIM = {
   newton: "Les trois lois de Newton",
   plan: "Mouvement sur un plan horizontal ou incliné",
   curviligne: "Mouvement curviligne sur un rail",
+  tubeNewton: "Expérience du tube de Newton",
+  chuteLibre: "Chute libre verticale",
+  chuteFrottement: "Chute verticale avec frottement",
+  euler: "Méthode d'Euler",
 };
 
 export const PROGRAMME: ProgUnit[] = [
@@ -316,6 +320,82 @@ export const PROGRAMME: ProgUnit[] = [
             detail: "Bille sur un rail ABCD : plan incliné, partie horizontale avec frottement, puis portion circulaire.",
             formulas: ["v_B = √(2·g·AB·sin α)", "a = −f/m", "R = mg(3·cos θ − 2)"],
             sim: { href: "/simulations/mouvement-curviligne", label: SIM.curviligne },
+          },
+        ],
+      },
+      {
+        slug: "chute-libre",
+        num: 2,
+        title: "Chute libre d'un corps solide",
+        summary: "Champ de pesanteur, expérience du tube de Newton, définition de la chute libre et équations horaires du mouvement.",
+        parts: [
+          {
+            title: "Le champ de pesanteur",
+            detail: "Au voisinage de la Terre, tout corps subit son poids, proportionnel à sa masse.",
+            formulas: ["P = m·g"],
+            sim: { href: "/simulations/tube-newton", label: SIM.tubeNewton },
+          },
+          {
+            title: "Expérience du tube de Newton",
+            detail: "Dans un tube vidé de son air, une bille, un papier et une plume tombent ensemble ; dans l'air, non.",
+            sim: { href: "/simulations/tube-newton", label: SIM.tubeNewton },
+          },
+          {
+            title: "Définition de la chute libre",
+            detail: "Un corps est en chute libre s'il n'est soumis qu'à son poids ; chute libre verticale si sa trajectoire est rectiligne.",
+            sim: { href: "/simulations/tube-newton", label: SIM.tubeNewton },
+          },
+          {
+            title: "Équations horaires du mouvement",
+            formulas: ["a = g", "v = g·t + v₀", "z = ½·g·t² + v₀·t + z₀"],
+            sim: { href: "/simulations/chute-libre", label: SIM.chuteLibre },
+          },
+        ],
+      },
+      {
+        slug: "chute-verticale-frottement",
+        num: 3,
+        title: "Chute verticale avec frottement",
+        summary: "Forces agissant sur un corps dans un fluide, équation différentielle de la vitesse, régimes transitoire et permanent, méthode d'Euler.",
+        parts: [
+          {
+            title: "Les forces agissantes",
+            detail: "Un corps immergé dans un fluide subit son poids, la poussée d'Archimède et une force de frottement fluide.",
+            sim: { href: "/simulations/chute-frottement", label: SIM.chuteFrottement },
+          },
+          {
+            title: "La force de pesanteur",
+            formulas: ["P = m·g"],
+            sim: { href: "/simulations/chute-frottement", label: SIM.chuteFrottement },
+          },
+          {
+            title: "La force de frottement fluide",
+            detail: "Opposée à la vitesse : n = 1 pour un petit corps lent, n = 2 pour un grand corps rapide.",
+            formulas: ["f = h·vⁿ"],
+            sim: { href: "/simulations/chute-frottement", label: SIM.chuteFrottement },
+          },
+          {
+            title: "La poussée d'Archimède",
+            detail: "Verticale, vers le haut, égale au poids du fluide déplacé.",
+            formulas: ["F_A = ρ_f·V·g"],
+            sim: { href: "/simulations/chute-frottement", label: SIM.chuteFrottement },
+          },
+          {
+            title: "L'équation différentielle vérifiée par la vitesse",
+            formulas: ["dv/dt = A − B·vⁿ", "A = g·(1 − ρ_f·V/m)", "B = h/m"],
+            sim: { href: "/simulations/chute-frottement", label: SIM.chuteFrottement },
+          },
+          {
+            title: "Les régimes d'une chute verticale",
+            detail: "Régime transitoire (v augmente, a diminue), puis régime permanent (v = v_lim, a = 0).",
+            formulas: ["v_lim = (A/B)^(1/n)"],
+            sim: { href: "/simulations/chute-frottement", label: SIM.chuteFrottement },
+          },
+          {
+            title: "La méthode d'Euler",
+            detail: "Résolution approchée de l'équation différentielle, pas à pas ; on prend en général Δt ≈ τ/10.",
+            formulas: ["aᵢ = A − B·vᵢⁿ", "vᵢ₊₁ = vᵢ + aᵢ·Δt"],
+            sim: { href: "/simulations/methode-euler", label: SIM.euler },
           },
         ],
       },
